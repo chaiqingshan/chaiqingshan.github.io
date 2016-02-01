@@ -10,7 +10,7 @@
 
     {% include navigation.html %}
 
-    <section id="post" class="container content-section text-center">
+    <section id="post" class="container content-section">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
@@ -18,7 +18,7 @@
 
           <h1><strong>{{ page.title }}</strong></h1>
           <h4><strong>{{ page.date | date_to_string }}</strong>
-            <small> . {{ page.category }} . <a href="{{site.baseurl}}{{page.url }}#disqus_thread">Comments</a>
+            <small> . {{ page.category }} . <a href="{{site.baseurl}}{{page.url }}#disqus_thread">评论</a>
             {% for tag in page.tags %}
               <a href="{{site.baseurl}}/tags/{{tag}}.html">#{{ tag }}</a>
             {% endfor %}
