@@ -91,9 +91,6 @@ linkedin-share: True
 reddit-share: True
 google-plus-share: True
 tumblr-share: True
-pinterest-share: True
-pocket-share: True
-vkontakte-share: True
 
 disqus-shortname: "chaiqingshan"
 
@@ -118,7 +115,7 @@ events:
     description: "创业计划大赛——“种礼物”APP设计"
   - image: "/img/timeline/baidu.png"
     date: "2013年4月"
-    description: "百度地图网站可用性测试"
+    description: "[百度地图网站可用性测试](http://pan.baidu.com/s/1skrE1T7)"
   - image: "/img/timeline/bupt.jpg"
     date: "2012年9月"
     description: "考入北京邮电大学"

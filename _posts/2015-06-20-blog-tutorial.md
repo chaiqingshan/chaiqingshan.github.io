@@ -1,64 +1,66 @@
 ---
 layout: post
 section-type: post
-title: Setting up the Blog
-category: tech
-tags: [ 'tutorial' ]
+title: 创业计划大赛作品——“种礼物”APP设计
+category: works
+tags: [ 'works' ]
 ---
+##每日精选
 
-A website is truly personal if it hosts your blog as well, this place of the internet
-where you can place your thoughts about anything!
+####精心挑选时尚好礼，让你轻松找到你想要的和Ta想要的。
 
-### Latest post preview in Index page
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E9%A6%96%E9%A1%B5-%E7%B2%BE%E9%80%89.jpg" alt="" width="40%">
 
-First of all, you get a preview of the latest post in the index, in order to attract the visitor to visit your blog.
-The size of this preview is defined by:
+##快速发布心愿
+随时随地将你想要的礼物加入心愿单，分享给周围的朋友，大声说出你想要的，让他们在重要的日子为你实现心愿。
 
-<pre><code data-trim class="yaml">
-post-preview-words: 96
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%BF%83%E6%84%BF%E5%8D%95.jpg" alt="" width="40%">
 
-Feel free to experiment with different sizes, and pick the best for you :smile:
+##便捷礼物管理
+收到礼物后寄存云端，按需配送；不合心意时任性转换为礼豆，换购想要的商品；还能将收到的礼物快速赠于他人，让每一件礼物去到最合适的地方，避免浪费。
 
-### Archive
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%88%91%E6%94%B6%E5%88%B0%E7%9A%84.jpg" alt="" width="40%">
 
-A blog is expected to host many posts, so you will need an archive with pagination,
-which in a nutshell it's a grouping of your posts in pages, in reverse chronological
-order. You can define the number of posts that are displayed per page by changing:
+##登录
 
-<pre><code data-trim class="yaml">
-paginate: 5
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95.jpg" alt="" width="40%">
 
-### Share buttons
+##好友详情
 
-Many share buttons are available and can be enabled or disabled by setting the following:
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%A5%BD%E5%8F%8B%E8%AF%A6%E6%83%85.jpg" alt="" width="40%">
 
-<pre><code data-trim class="yaml">
-email-share: True
-fb-share: True
-twitter-share: True
-linkedin-share: True
-reddit-share: True
-google-plus-share: True
-tumblr-share: True
-pinterest-share: True
-pocket-share: True
-vkontakte-share: True
-</code></pre>
+##礼物拆分
 
-### Comments
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%A4%BC%E7%89%A9%E6%8B%86%E5%88%86.jpg" alt="" width="40%">
 
-You can enable <a href="http://www.disqus.com" target="\_blank">Disqus</a> comments by just setting your Disqus username here:
+##礼物详情
 
-<pre><code data-trim class="yaml">
-disqus-shortname: "Your Disqus username"
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%A4%BC%E7%89%A9%E8%AF%A6%E6%83%85.jpg" alt="" width="40%">
 
-### RSS feed
+##分类
 
-The RSS feed is automatically generated and placed in /feed.xml.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E9%A6%96%E9%A1%B5-%E5%88%86%E7%B1%BB.jpg" alt="" width="40%">
 
-### Sitemap
+##提醒
 
-The Sitemap is automatically generated and placed in /sitemap.xml
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%8F%90%E9%86%92.jpg" alt="" width="40%">
+
+##添加提醒
+
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%B7%BB%E5%8A%A0%E6%8F%90%E9%86%92.jpg" alt="" width="40%">
+
+##我的
+
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%88%91%E7%9A%84.jpg" alt="" width="40%">
+
+##我送出的
+
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%88%91%E9%80%81%E5%87%BA%E7%9A%84.jpg" alt="" width="40%">
+
+##我收到的
+
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%88%91%E6%94%B6%E5%88%B0%E7%9A%84.jpg" alt="" width="40%">
+
+##更多
+
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%9B%B4%E5%A4%9A.jpg" alt="" width="40%">

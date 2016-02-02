@@ -1,32 +1,17 @@
 ---
 layout: post
 section-type: post
-title: Adding a life event in the Timeline
-category: tech
-tags: [ 'tutorial' ]
+title: 第七届大创展VI设计
+category: works
+tags: [ 'works' ]
 ---
-One of the coolest features of { Personal } is that enables you to tell your life's story in
-the form of a timeline of photos, dates and text descriptions.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/i1.jpg" alt="" width="60%">
 
-The Timeline is controlled by the following variables:
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/i2.jpg" alt="" width="60%">
 
-<pre><code data-trim class="yaml">
-events:
-  - image: "/img/timeline/spidertocat.png"
-    date: "September 2013 - Today"
-    description: "Saving the neighborhood!"
-  - image: "/img/timeline/baracktocat.jpg"
-    date: "September 2007 - August 2013"
-    description: "Started coding"
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/i3.jpg" alt="" width="60%">
 
-# First image of the Timeline
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/i4.jpg" alt="" width="60%">
 
-timeline-img: "/img/timeline/default.png"
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/i5.jpg" alt="" width="60%">
 
-For each event of your life, add a tuple of image, date and description to the events,
-and the timeline will be automatically generated!
-
-The timeline-img path variable is the image that you want to show up in the beginning of your Timeline, be creative!
-
-<small>Square images are recommended 😉</small>

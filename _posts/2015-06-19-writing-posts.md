@@ -1,75 +1,42 @@
 ---
 layout: post
 section-type: post
-title: Writing posts
-category: tech
-tags: [ 'tutorial' ]
+title: 三维建模作品
+category: works 
+tags: [ 'works' ]
 ---
+###华为展厅效果图
 
-### Creating a new post
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%8D%8E%E4%B8%BA%E5%B1%95%E5%8E%85%E6%95%88%E6%9E%9C%E5%9B%BE4.jpg" alt="" width="60%">
 
-Run the ./scripts/newpost script with the file name of the post as an argument:
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%8D%8E%E4%B8%BA%E5%B1%95%E5%8E%85%E6%95%88%E6%9E%9C%E5%9B%BE1.jpg" alt="" width="60%">
 
-<pre><code data-trim class="bash">
-cd <your { Personal } repo>
-./scripts/newpost hello-world
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%8D%8E%E4%B8%BA%E5%B1%95%E5%8E%85%E6%95%88%E6%9E%9C%E5%9B%BE2.jpg" alt="" width="60%">
 
-A a new post template with name YYYY-MM-DD-hello-world.md will be created under ./\_posts, with the current date.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%8D%8E%E4%B8%BA%E5%B1%95%E5%8E%85%E6%95%88%E6%9E%9C%E5%9B%BE3.jpg" alt="" width="60%">
 
-In the created post, just replace the Title, Category and tags and you can
-start writing your post in markdown right bellow the end of the post header.
+###汽车效果图
 
-Every file with the format <i>YYYY-MM-DD-post-title.md</i> will be processed as a
-post, with publication date <i>YYYY-MM-DD</i>.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%B1%BD%E8%BD%A6%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E5%9B%BE.jpg" alt="" width="60%">
 
-The content starts with:
+###花
 
-<pre><code data-trim class="yaml">
----
-layout: post
-section-type: post
-title: Title
-category: Category
-tags: [ 'tag1', 'tag2' ]
----
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%8A%B1%E6%9C%B5%E6%95%88%E6%9E%9C%E5%9B%BE.jpg" alt="" width="60%">
 
-The *layout* and *section-type* variables are used by the theme and you shouldn't remove them.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%8A%B1%E6%9E%9D%E6%95%88%E6%9E%9C%E5%9B%BE.jpg" alt="" width="60%">
 
-### Hashtags
+###空间站
 
-Jekyll generates a static pages.
-As a result we have to create the tag pages before building and publishing the site.
-In order to generate the tag pages, simply run the *generate-tags* script from the repo's root directory:
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C%E5%9B%BE.jpg" alt="" width="60%">
 
-<pre><code data-trim class="bash">
-./scripts/generate-tags
-</code></pre>
+###部分实物图
 
-The script will parse all your posts, and generate the tag pages for the newly added tags.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%8B%972.jpg" alt="" width="60%">
 
-<small>If you are not using GitHub Pages, you can automate the execution of this script during build time.</small>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%A4%A7%E6%8F%90%E7%90%B4.jpg" alt="" width="60%">
 
-### Syntax highlighting
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%A3%81%E8%99%8E.jpg" alt="" width="60%">
 
-If you want to demonstrate source code in your posts, syntax highlighting is provided.
-If you want to see how to render your code with the highlight, simply check the source
-code of this tutorial post :smile:
 
-<pre><code data-trim class="c">
-{% raw %}
-int main()
-{
-  printf("Hello, world of syntax highlighting!");
 
-  return 0;
-}
-{% endraw %}
-</code></pre>
 
-<small>If you don't need syntax highlight in your website you can disable it by setting the syntax-highlight variable to False</small>
-
-### Emoji support
-
-You can add emojis to your posts by simply typing their [emoji code](http://www.emoji-cheat-sheet.com/) :wink:

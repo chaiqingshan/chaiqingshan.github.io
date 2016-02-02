@@ -1,87 +1,31 @@
 ---
 layout: post
 section-type: post
-title: Initial setup
-category: tech
-tags: [ 'tutorial' ]
+title: 视觉设计作品（三）
+category: works
+tags: [ 'works' ]
 ---
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%A7%A6%E5%B1%8F%E7%95%8C%E9%9D%A2.png" alt="" width="60%">
 
-All features of { Personal } are controlled by setting values to variables that are defined in the
-\_config.yml file. Let's start with the initial variables that you have to set before
-serving your { Personal } website for the first time.
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E6%8C%89%E9%92%AE%E8%AE%BE%E8%AE%A1.png" alt="" width="60%">
 
-### Essential variables
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.png" alt="" width="60%">
 
-<pre><code data-trim class="yaml">
-# NB! Set your site's url, otherwise stuff will break :)
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%94%B5%E8%AF%9D%E5%9B%BE%E6%A0%871.png" alt="" width="60%">
 
-url: "https://panossakkos.github.io"
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%94%B5%E8%AF%9D%E5%9B%BE%E6%A0%872.png" alt="" width="60%">
 
-# If you're hosting your site at a Project repository on GitHub pages
-# (https://yourusername.github.io/repository-name)
-# and NOT your user repository (https://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-#
-# NB! Without this *nothing* will work, because it's used in every path :)
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%B5%81%E5%85%89%E5%AD%97%E5%8A%A8%E7%94%BB.gif" alt="" width="60%">
 
-baseurl: /personal-jekyll-theme
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%92%99%E5%A8%9C%E4%B8%BD%E8%8E%8E.jpg" alt="" width="60%">
 
-The url and baseurl variables are essential, because they are used *everywhere* where an anchor is defined!
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E7%A0%B4%E6%8D%9F%E5%AD%97.jpg" alt="" width="60%">
 
-### HTTPS
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E5%B7%A7%E5%85%8B%E5%8A%9B%E4%B8%9D%E6%BB%91%E8%B4%A8%E6%84%9F.jpg" alt="" width="60%">
 
-By default { Personal } will enforce https by javascript redirection.
-HTTPS is important because it encrypts the data sent between the client and the server.
-If you are hosting on GitHub Pages then it will just work, because your website
-will be piggybacking GitHub's certificate.
-If you are hosting your website in a server that doesn't have a certificate and
-you don't want to issue one, then you can disable this feature by setting the following
-variable to False:
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E6%97%A5%E5%8E%86%E5%9B%BE%E6%A0%87%E8%AE%BE%E8%AE%A1.jpg" alt="" width="60%">
 
-<pre><code data-trim class="yaml">
-force-https: True
-</code></pre>
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%BD%AF%E4%BB%B6%E5%9B%BE%E6%A0%87%E8%83%8C%E6%99%AF.png" alt="" width="60%">
 
-### HTML Head
+<img src="http://7xqbz8.com1.z0.glb.clouddn.com/%E8%A7%86%E9%A2%91%E7%95%8C%E9%9D%A2.png" alt="" width="60%">
 
-<pre><code data-trim class="yaml">
-lang: "en"
-author: "John Smith"
-title: "{ John Smith }"
-description: "Blog and website of John Smith, blogging mainly for tech. Opinions expressed are mine."
-keywords: "smith, jones, personal, jekyll, theme"
-favicon: "/img/favicon.ico"
-404-img: "/img/labtocat.png"
-</code></pre>
-
-The values that you set, will be placed in the head section of every generated HTML page.
-
-### Google Analytics
-
-The Google tracking code will be placed in every generated page.
-If you don't want Google analytics tracking your website's traffic, set the google-tracking-id to an empty string.
-
-<pre><code data-trim class="yaml">
-google-tracking-id: "UA-35880426-4"
-</code></pre>
-
-### Serving { Personal }
-
-Install the required dependencies:
-
-<pre><code data-trim class="bash">
-gem install jekyll jekyll-paginate jemoji html-proofer
-</code></pre>
-
-Serve the jekyll website:
-
-<pre><code data-trim class="bash">
-./scripts/serve-production
-</code></pre>
-
-That's it!
-
-Visit [http://127.0.0.1:4000](http://127.0.0.1:4000) and you are ready to start hacking around your { Personal } website!
-
-<small>Many thanks to <a href="https://github.com/joariasl" target="\_blank">@joariasl</a> for the language support! </small>
