@@ -1,11 +1,339 @@
 ---
 layout: post
 section-type: post
-title: 建博客心得
-category: Category
+title: Github Pages + Jekyll 搭建自己的个人博客心得
+category: tech
 tags: [ '技术', '心得' ]
 ---
-记得在2013年初，刚刚接触到github-page，当时关于如何搭建github博客的文章还很少，而且整个过程对于新手来讲还是比较复杂的，所以笔者写了一整个系列来记录如何搭建github博客。在一年多的时间里，笔者的系列文章也被不少的网友转载，从ga的统计看，来到这个博客的网友大多都是来看这个系列文章的，也有不少的网友通过其他的方式联系到我，一起探讨构建博客的问题。一年多的时间里，笔者的主要精力是写好博客的文章，并没有花时间研究github在个人主页上面进行了何种改进，仍然沿用以前的那套方式和方法。不过在跟网友的沟通中也隐隐感觉到github已经有了很大的改进，但是苦于没有很多的精力来研究。前一段时间，github的一封邮件触发了我重新学习和改进，以及这篇文章，原文如下：
-大致的意思是说我的博客设置过时了，无法享受到新功能。通过阅读链接，发现新的功能是通过CDN加速访问！这个功能可以说是很多博主梦寐以求的，因为在国内访问github一直是很慢的。于是，决定开始改进。在改进的过程中，笔者发现github个人主页的做法有很大的变化，很多东西都变得简单。需要重新的梳理一下，于是便有了本文。
-大致的意思是说我的博客设置过时了，无法享受到新功能。通过阅读链接，发现新的功能是通过CDN加速访问！这个功能可以说是很多博主梦寐以求的，因为在国内访问github一直是很慢的。于是，决定开始改进。在改进的过程中，笔者发现github个人主页的做法有很大的变化，很多东西都变得简单。需要重新的梳理一下，于是便有了本文。
-大致的意思是说我的博客设置过时了，无法享受到新功能。通过阅读链接，发现新的功能是通过CDN加速访问！这个功能可以说是很多博主梦寐以求的，因为在国内访问github一直是很慢的。于是，决定开始改进。在改进的过程中，笔者发现github个人主页的做法有很大的变化，很多东西都变得简单。需要重新的梳理一下，于是便有了本文。
+此文主要记录了我自己在建此站点过程中遇见的一些问题和解决方案，完全是在自身能力层级范围内进行描述，有误之处望包涵指正。由于现在网上关于这方面的教程并不是很多，不少都是英文的，所以在建设过程中确实很累心，参考文献也都不是很详尽，总会出现你意想不到的错误，希望这篇文章能够给用github pages建立个人博客的同学一些有用的参考，让大家少走一些弯路，我会尽可能详细的整理，其中的资料可能会摘录到其他人的教程，我会在后面列出了参考资料，感谢这些作者们。
+
+![github1](http://7xqbz8.com1.z0.glb.clouddn.com/github1.jpg)
+
+##很多人用WordPress，为什么要用github  pages来搭建？
+
+github pages有300M免费空间，资料自己管理，保存可靠；
+
+学会用 github，享受 github 的便利，上面有很多大牛，眼界会开阔很多；
+
+熟悉github 工作原理，最好的团队协作流程；
+
+github 是趋势；
+
+就算 github 被墙了，还可以搬到国内的 gitcafe 中去。
+
+支持页面生成，可以使用jekyll来布局页面，使用markdown来书写正文。
+
+可以自定义域名。
+
+##第一步：购买域名
+
+懂的同学自行跳过此步，买域名为什么要放到前面来做掉？是为了防止有的同学弄到一半嫌麻烦，就没精神再捣鼓下去，而买了域名，钱都往里砸了，极有可能帮助剧情往下继续发展，有助于个人身心健康……
+域名可在GoDaddy上使用支付宝购买，英文不好？那就万网、美联互橙、新网随便挑一个国内域名服务商买吧。关于域名这块，还需要域名解析的预备知识，可以自行百度。
+
+##第二步：注册github并搭建Page
+
+![github2](http://7xqbz8.com1.z0.glb.clouddn.com/github2.png)
+
+**1、注册github**
+
+访问：http://www.github.com/
+注册你的username和邮箱，邮箱十分重要，GitHub上很多通知都是通过邮箱的。
+
+**2、检查 SSH keys的设置**
+
+首先我们需要检查电脑上现有的ssh key：
+   
+    $ cd ~/.ssh 检查本机的ssh密钥
+
+如果提示：No such file or directory 说明你是第一次使用git。
+生成新的SSH Key：
+   
+    $ ssh-keygen -t rsa -C "邮件地址@youremail.com"
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa):<回车就好>
+
+注意1: 此处的邮箱地址，你可以输入自己的邮箱地址；注意2: 此处的「-C」的是大写的「C」
+
+然后系统会要你输入密码：
+
+    Enter passphrase (empty for no passphrase):<输入加密串>
+    Enter same passphrase again:<再次输入加密串>
+
+在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。
+
+注意：输入密码的时候没有*字样的，你直接输入就可以了。
+
+**3、添加 SSH Key 到 GitHub**
+
+在本机设置SSH Key之后，需要添加到GitHub上，以完成SSH链接的设置。
+
+打开本地C:\Documents and Settings\Administrator.ssh\id_rsa.pub文件。此文件里面内容为刚才生成人密钥。如果看不到这个文件，你需要设置显示隐藏文件。准确的复制这个文件的内容，才能保证设置的成功。
+
+登陆github系统。点击右上角的 Account Settings—>SSH Public keys —> add another public keys
+
+把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了。
+可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：
+$ ssh -T git@github.com
+
+如果是下面的反馈：
+
+    The authenticity of host 'github.com (207.97.227.239)' can't be established.
+    RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+    Are you sure you want to continue connecting (yes/no)?
+
+不要紧张，输入yes就好，然后会看到：
+
+    Hi chaiqingshan! You've successfully authenticated, but GitHub does not provide shell access.
+
+**4、设置用户信息**
+
+现在你已经可以通过 SSH 链接到 GitHub 了，还有一些个人信息需要完善的。
+Git 会根据用户的名字和邮箱来记录提交。GitHub 也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。
+
+    $ git config --global user.name "chaiqingshan"//用户名
+    $ git config --global user.email  "1324315849@qq.com"//填写自己的邮箱
+
+**5. SSH Key 配置成功**
+
+本机已成功连接到 github。
+
+若有问题，请重新设置。常见错误请参考：
+
+[GitHub Help - Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys)
+
+[GitHub Help - Error Permission denied (publickey)](https://help.github.com/articles/error-permission-denied-publickey/)
+
+**6、将独立域名与 GitHub Pages 的空间绑定**
+
+**DNS 设置**
+
+用 DNSpod，快，免费，稳定。
+
+注册DNSpod，添加域名，如下图设置。
+
+![dnspod](http://7xqbz8.com1.z0.glb.clouddn.com/dnspod.png)
+
+其中A的两条记录指向的ip地址是github Pages的提供的ip
+
+    192.30.252.153
+    192.30.252.154
+
+如博客不能登录，有可能是 github 更改了空间服务的 ip 地址，记得及时到在GitHub Pages查看最新的ip即可。
+
+www 指定的记录是你在 github 注册的仓库。
+
+**去 Godaddy 修改 DNS 地址**
+将 godaddy 的 Nameservers 更改成 f1g1ns1.dnspod.net 和 f1g1ns2.dnspod.net。
+如有不详看可以看DNSpod提供的官方帮助。
+
+**7、搭建Page**
+
+新建一个 Repository。
+
+![bAjmqq](http://7xqbz8.com1.z0.glb.clouddn.com/bAjmqq.jpg)
+
+输入相关配置，注意，在网址栏一定要输入 username.github.io ，username指的是你注册时的用户名。
+
+![va](http://7xqbz8.com1.z0.glb.clouddn.com/vaEvum.jpg)
+
+新建好后，进入项目，点击右下角 Settings 。
+
+![me](http://7xqbz8.com1.z0.glb.clouddn.com/meIfAj.jpg)
+
+点击 Automatic page generator。
+
+选择一个你喜欢的模板，点击生成...
+
+其实到这一步，我们的网站已经生成了，你可以通过自己的域名 username.github.io 进行访问，只是目前，我们还没有学会对网站上的内容进行管理。
+
+接着，我们要进行github端的配置，进入我们所建的Page仓库主页，找到右下角的 Clone in Desktop ，将项目克隆到本地。我们新建一个文档，随便什么格式，然后在里面写入自己买的域名，然后将文档重命名成 CNAME ,不要加任何文件格式后缀。
+
+然后此CNAME文档拖到我们克隆到本地的仓库文件夹，使用github客户端进行同步上传。过不了多久，你就可以在浏览器中打进你的域名，你会惊奇地发现，它已经自动跳转到你在github上设置的默认网页了！
+
+##第三步：本地环境搭建
+
+这一步不是必须的，但是强烈建议完成。因为在博客发布之前，通常都是需要在本地先检验一下的。github有一个对应的gem，可以”一键”配置环境，具体可以参考[Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/)。这里稍微提一下：
+
+**Ruby安装**
+
+jekyll本身基于Ruby开发，因此，想要在本地构建一个测试环境需要具有Ruby的开发和运行环境。在windows下，可以使用Rubyinstaller安装。
+
+**RubyDevKit安装**
+
+从这里下载DevKit，注意版本要与Ruby版本一致
+
+下载下来的是一个很有意思的sfx文件，直接双击，它会自解压到你所选择的目录。
+
+解压完成之后，用cmd进入到刚才解压的目录下，运行下面命令，该命令会生成config.yml。
+
+    $ruby dk.rb init
+
+config.yml文件实际上是检测系统安装的ruby的位置并记录在这个文件中，以便稍后使用。但上面的命令只针对使用rubyinstall安装的ruby有效，如果是其他方式安装的话，需要手动修改config.yml。我生成的config.yml文件内容如下：
+
+    # This configuration file contains the absolute path locations of all
+    # installed Rubies to be enhanced to work with the DevKit. This config
+    # file is generated by the 'ruby dk.rb init' step and may be modified
+    # before running the 'ruby dk.rb install' step. To include any installed
+    # Rubies that were not automagically discovered, simply add a line below
+    # the triple hyphens with the absolute path to the Ruby root directory.
+    #
+    # Example:
+    #
+    # ---
+    # - C:/ruby19trunk
+    # - C:/ruby192dev
+    #
+    ---
+    - C:/Ruby193
+
+最后，执行如下命令，执行安装：
+
+    $ruby setup.rb
+
+如果没有setup.rb的话，执行：
+
+    $ruby dk.rb install
+
+**Rubygems**
+
+[gems下载地址](http://rubyforge.org/frs/?group_id=126)
+
+解压后，用cmd进入到解压后的目录，执行命令即可：
+
+    $ruby setup.rb
+
+**安装Bundle**
+
+直接使用下面命令即可：
+
+    $ gem install bundle
+
+**Gemfile和Bundle安装**
+
+在根目录下创建一个叫Gemfile的文件，注意没有后缀，输入
+
+    source 'http://ruby.taobao.org/'
+    gem 'github-pages'
+
+保存后，在命令行中执行
+
+    $ bundle install
+
+命令会根据当前目录下的Gemfile，安装所需要的所有软件。这一步所安装的东西，可以说跟github本身的环境是完全一致的，所以可以确保本地如果没有错误，上传后也不会有错误。而且可以在将来使用下面命令，随时更新环境，十分方便。
+
+    $ bundle update
+
+使用下面命令，启动转化和本地服务：
+
+    $ bundle exec jekyll serve
+
+**使用现成的模板**
+
+博客基于jekyll，而新手往往摸不着头脑，幸好有一些现成的模板可以直接使用。
+以White Paper这个模板为例，可以直接下载压缩包，也可以使用如下命令clone到本地：
+
+    $ git clone https://github.com/vinitkumar/white-paper.git
+
+把克隆下来的文件拷贝到你自己的目录就行了，这样你就有一个现成的网站结构了。
+
+##第四步：自定义域名
+
+A记录：域名直接映射IP，但是这个IP换成了192.30.252.153或192.30.252.154。
+
+如果域名提供商支持ALIAS或ANAME，将域名指向username.github.io，这样可以在域名解析的时候得到一个动态的IP，这个IP是一台离你最近的镜像主机
+
+CNAME：如果使用二级域名访问，将一个二级域名配置成CNAME，指向username.github.io，这样可以在域名解析的时候得到一个动态的IP，这个IP是一台离你最近的镜像主机
+
+其中后两种方式能够享受CDN加速，因为域名不是直接与IP地址映射的，github就有机会帮用户选择最近的镜像主机提供服务。但是我先前是直接将在A记录里面将主域chaiqingshan.cn和www.chaiqingshan.cn指向了204.232.175.78。所以github会给我警告。
+
+首先删除www.chaiqingshan.cn的A记录，添加CNAME记录
+
+    www.chaiqingshan.cn -> chaiqingshan.github.io
+
+使用dig查看域名解析情况
+
+    www.chaiqingshan.cn.         1799    IN      CNAME   pchou.github.io.
+    chaiqingshan.github.io.        3600    IN      CNAME   github.map.fastly.net.
+    github.map.fastly.net.  280     IN      A       103.245.222.133
+
+可以看到，CDN最终为我选择了IP地址为103.245.222.133的镜像主机
+
+修改或添加项目中的CNAME文件，变成如下：
+
+    www.chaiqingshan.cn
+
+等待十几分钟即可。
+
+当访问chaiqingshan.cn的时候会自动重定向到www.chaiqingshan.cn，于是访问一台IP为103.245.222.133的镜像主机 当访问www.chaiqingshan.cn会访问一台IP为103.245.222.133的镜像主机.
+
+github在这里自动将www的子域与主域关联了起来，并有如下行为：
+
+如果仓库的CNAME文件包含example.com，那么访问www.example.com会重定向到example.com 如果仓库的CNAME文件包含www.example.com，那么访问example.com会重定向到www.example.com
+经过测试，使用CDN后，速度可以提高一倍：
+
+ping最早的IP
+
+    PING 204.232.175.78 (204.232.175.78) 56(84) bytes of data.
+    64 bytes from 204.232.175.78: icmp_seq=1 ttl=48 time=280 ms
+    64 bytes from 204.232.175.78: icmp_seq=3 ttl=46 time=243 ms
+    64 bytes from 204.232.175.78: icmp_seq=4 ttl=48 time=273 ms
+    64 bytes from 204.232.175.78: icmp_seq=5 ttl=46 time=239 ms
+    64 bytes from 204.232.175.78: icmp_seq=6 ttl=46 time=239 ms
+    64 bytes from 204.232.175.78: icmp_seq=7 ttl=46 time=236 ms
+    64 bytes from 204.232.175.78: icmp_seq=8 ttl=46 time=238 ms
+    ping后来的IP
+
+    PING 192.30.252.153 (192.30.252.153) 56(84) bytes of data.
+    64 bytes from 192.30.252.153: icmp_seq=1 ttl=47 time=358 ms
+    64 bytes from 192.30.252.153: icmp_seq=2 ttl=47 time=345 ms
+    64 bytes from 192.30.252.153: icmp_seq=5 ttl=47 time=359 ms
+    64 bytes from 192.30.252.153: icmp_seq=6 ttl=47 time=351 ms
+    64 bytes from 192.30.252.153: icmp_seq=7 ttl=47 time=370 ms
+    ping动态的IP
+
+    PING 103.245.222.133 (103.245.222.133) 56(84) bytes of data.
+    64 bytes from 103.245.222.133: icmp_seq=1 ttl=53 time=84.5 ms
+    64 bytes from 103.245.222.133: icmp_seq=2 ttl=54 time=118 ms
+    64 bytes from 103.245.222.133: icmp_seq=3 ttl=53 time=104 ms
+    64 bytes from 103.245.222.133: icmp_seq=4 ttl=54 time=118 ms
+    64 bytes from 103.245.222.133: icmp_seq=5 ttl=53 time=104 ms
+    64 bytes from 103.245.222.133: icmp_seq=6 ttl=53 time=82.5 ms
+
+##首页分页列表分页
+
+分页只可用在html页面中，不能用在markdown
+
+只需在_config.yml中配置如下两个参数即可
+
+    paginate: 5 # 指定每页多少条
+    paginate_path: "page:num" # 指定每页的url
+
+在目录页面通过paginator对象访问分页的一些参数。
+
+##语法高亮
+
+jekyll可以和pygments结合在生成html的时候就对代码块进行分析。只需在文章中使用如下语法即可：
+
+    {% highlight bash %}
+    $ gem install bundler
+    {% endhighlight %}
+
+
+##The last but not the least
+
+如果使用jekyll模板的话，所有的修改都是在_site文件夹外部进行的，一般就是修改includes、img、css、js这几个文件夹以及config.yml文件，所有在_site文件夹中修改的都是无效的，因为_site是有根目录中的其他文件生成的站点。
+
+最后，我想说的是：
+
+“没有十全十美的教程，如同不存在彻头彻尾的绝望”，在建站过程中总会遇到别人不曾遇到的问题，最重要的是保持住一颗捣腾不安的心以及对新鲜事物的渴望与[找寻](https://www.baidu.com)……
+
+##参考文献
+
+[Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/)
+
+[Setup Jekyll on Windows](http://yizeng.me/2013/05/10/setup-jekyll-on-windows/)
+
+[将纯文本转化为静态网站和博客](http://jekyll.bootcss.com/)
+
+[一步步在GitHub上创建博客主页](http://www.pchou.info/web-build/2013/01/03/build-github-blog-page-01.html)
+

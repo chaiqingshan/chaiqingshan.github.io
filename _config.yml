@@ -113,6 +113,9 @@ events:
   - image: "/img/timeline/ma.jpg"
     date: "2014年12月"
     description: "参加北京冬季山地马拉松"
+  - image: "/img/timeline/liwu.png"
+    date: "2014年6月"
+    description: "创业计划大赛——“种礼物”APP设计"
   - image: "/img/timeline/baidu.png"
     date: "2013年4月"
     description: "百度地图网站可用性测试"
@@ -161,7 +164,7 @@ social:
 pages_list:
   个人简介: 'about'
   我的博客: 'latest-post'
-  时光轴: 'timeline'
+  时间轴: 'timeline'
   联系方式: 'contact'
 
 # Exclusion list from the generated _site
