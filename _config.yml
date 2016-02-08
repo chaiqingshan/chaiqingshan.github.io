@@ -145,8 +145,9 @@ social:
     url: "#"
   - title: "qq"
     url: "http://user.qzone.qq.com/1324315849/"
-   - title: "rss"
+  - title: "rss"
     url: "/feed.xml"
+
 ############
 # 404 page #
 ############
