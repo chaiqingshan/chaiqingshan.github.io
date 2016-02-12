@@ -22,3 +22,5 @@ Dir.foreach(POSTS_DIR) do |post|
   }
 
 end
+
+# ./scripts/generate-tags
