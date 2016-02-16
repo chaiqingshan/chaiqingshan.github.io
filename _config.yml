@@ -59,7 +59,7 @@ lines: # You can add HTML Tags in the Text
   - text: "The lower you fall, the higher you'll fly."
   - text: "Where’s your will to be weird?"
 
-me-img: "/img/jetpacktocat.png"
+me-img: "/img/chai.png"
 
 ################
 # Web app mode #
@@ -69,12 +69,12 @@ web-app-mode: True
 
 # Icons for Web App mode
 
-icon-36p: "/img/web-app/icon-36p.png"
-icon-48p: "/img/web-app/icon-48p.png"
-icon-72p: "/img/web-app/icon-72p.png"
-icon-96p: "/img/web-app/icon-96p.png"
-icon-144p: "/img/web-app/icon-144p.png"
-icon-192p: "/img/web-app/icon-192p.png"
+icon-36p: "/img/web-app/chai-36.png"
+icon-48p: "/img/web-app/chai-48.png"
+icon-72p: "/img/web-app/chai-72.png"
+icon-96p: "/img/web-app/chai-96.png"
+icon-144p: "/img/web-app/chai-144.png"
+icon-192p: "/img/web-app/chai-192.png"
 
 ########
 # Blog #
