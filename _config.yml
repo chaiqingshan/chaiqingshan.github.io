@@ -59,7 +59,7 @@ lines: # You can add HTML Tags in the Text
   - text: "The lower you fall, the higher you'll fly."
   - text: "Where’s your will to be weird?"
 
-me-img: "/img/chai.png"
+me-img: "/img/chai.jpg"
 
 ################
 # Web app mode #
@@ -101,6 +101,9 @@ syntax-highlight: True
 ############
 
 events:
+  - image: "/img/timeline/NLP.png"
+    date: "2015年5月"
+    description: "[清华大学CSLT自然语言处理研究组网站建设——主要负责前端开发和视觉设计](http://nlp.cslt.org/index.html)"
   - image: "/img/timeline/innovation.jpg"
     date: "2015年4月——2015年5月"
     description: "大学生创新项目管理平台网站建设——主要负责前端开发、视觉设计和交互设计"
