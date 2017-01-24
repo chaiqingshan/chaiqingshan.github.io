@@ -57,7 +57,7 @@ start-delay: 200
 delete-delay: 5000
 lines: # You can add HTML Tags in the Text
   - text: "欢迎来到我的个人博客！"
-  - text: "来到这里的你一定是爱我的"
+  - text: "Stay foolish, stay hungry!"
 
 me-img: "/img/chai.jpg"
 
