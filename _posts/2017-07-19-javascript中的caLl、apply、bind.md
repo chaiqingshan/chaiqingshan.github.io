@@ -1,7 +1,7 @@
 ---
 layout: post
 section-type: post
-title: javascript种的caLl、apply、bind
+title: javascript中的caLl、apply、bind
 category: 技术
 tags: [ 'js']
 ---
@@ -271,6 +271,9 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
 再总结一下：
 
 apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；
+
 apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；
+
 apply 、 call 、bind 三者都可以利用后续参数传参；
+
 bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。
