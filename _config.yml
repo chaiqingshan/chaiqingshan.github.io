@@ -1,192 +1,27 @@
-
 # Site settings
-
-# NB! Set your site's url, otherwise stuff will break :)
-
-url: "https://chaiqingshan.github.io"
-
-# If you're hosting your site at a Project repository on GitHub pages
-# (https://yourusername.github.io/repository-name)
-# and NOT your user repository (https://yourusername.github.io)
-# then add in the baseurl here, like this: "/repository-name"
-#
-# NB! Without this *nothing* will work, because it's used in every path :)
-
-baseurl: ""
-
-# Google tracking id to track your visitors
-
-google-tracking-id: "UA-35880426-4"
-
-# Forces https everywhere in your website, except when you serve it locally
-# If you are not hosted on Github Pages, and your host doesn't support https
-# then you should disable it
-
-force-https: false
-
-#############
-# HTML Head #
-#############
-
-lang: "Zh-cn"
-author: "chaiqingshan"
-title: "柴青山博客"
-description: "Blog and website of chaiqingshan, blogging mainly for tech. Opinions expressed are mine."
-keywords: "chaiqingshan, personal, jekyll, theme"
-favicon: "/img/favicon.ico"
-404-img: "/img/labtocat.png"
-
-################
-# Header layout #
-################
-
-black-favicon: "/img/black-lab-glass.ico"
-
-background-img: "../img/intro-bg.jpg"
-
-##############################
-# Dynamic Text on the Header #
-##############################
-
-dynamic-typing: True
-shuffle: True # Shuffle the lines.
-loop: True
-loop-count: False # Set False for infinite loop, or set any number for finite loop.
-type-speed: 10
-start-delay: 200
-delete-delay: 5000
-lines: # You can add HTML Tags in the Text
-  - text: "欢迎来到我的个人博客！"
-  - text: "Stay foolish, stay hungry!"
-
-me-img: "/img/chai.jpg"
-
-################
-# Web app mode #
-################
-
-web-app-mode: True
-
-# Icons for Web App mode
-
-icon-36p: "/img/web-app/chai-36.png"
-icon-48p: "/img/web-app/chai-48.png"
-icon-72p: "/img/web-app/chai-72.png"
-icon-96p: "/img/web-app/chai-96.png"
-icon-144p: "/img/web-app/chai-144.png"
-icon-192p: "/img/web-app/chai-192.png"
-
-########
-# Blog #
-########
-
-post-preview-text: 100
-
-paginate: 5
-
-email-share: True
-fb-share: True
-twitter-share: True
-linkedin-share: True
-reddit-share: True
-google-plus-share: True
-tumblr-share: True
-
-disqus-shortname: "chaiqingshan"
-
-syntax-highlight: True
-
-############
-# Timeline #
-############
-
-events:
-  - image: "/img/timeline/kugou.jpg"
-    date: "2017年3月"
-    description: "[vue+mint-ui酷狗音乐app demo](https://www.chaiqingshan.cn/cqs-kugou)"
-  - image: "/img/timeline/ATF.jpg"
-    date: "2016年12月"
-    description: "[ATF代码测试平台——主要负责前端开发](https://github.com/cqs-fe/ATF)"
-  - image: "/img/timeline/NLP.png"
-    date: "2015年5月"
-    description: "[清华大学CSLT自然语言处理研究组网站建设——主要负责前端开发和视觉设计](http://nlp.cslt.org/index.html)"
-  - image: "/img/timeline/innovation.jpg"
-    date: "2015年4月——2015年5月"
-    description: "大学生创新项目管理平台网站建设——主要负责前端开发、视觉设计和交互设计"
-  - image: "/img/timeline/VI.jpg"
-    date: "2015年3月"
-    description: "大学生创新项目展示交流会暨创新论坛展会系列VI设计"
-  - image: "/img/timeline/ma.jpg"
-    date: "2014年12月"
-    description: "参加北京冬季山地马拉松"
-  - image: "/img/timeline/liwu.png"
-    date: "2014年6月"
-    description: "创业计划大赛——“种礼物”APP设计"
-  - image: "/img/timeline/baidu.png"
-    date: "2013年4月"
-    description: "[百度地图网站可用性测试](http://pan.baidu.com/s/1skrE1T7)"
-  - image: "/img/timeline/bupt.jpg"
-    date: "2012年9月"
-    description: "考入北京邮电大学"
-
-# First image of the Timeline
-
-timeline-img: "/img/timeline/default.jpg"
-
-###########
-# Contact #
-###########
-
-email: "chaiqingshan@hotmail.com"
-
-##################
-# Social Buttons #
-##################
-
-social:
-  - title: "github"
-    url: "https://github.com/chaiqingshan/"
-  - title: "weibo"
-    url: "http://weibo.com/u/3210618150"
-  - title: "linkedin"
-    url: "http://www.linkedin.com/in/%E9%9D%92%E5%B1%B1-%E6%9F%B4-6919b4b3"
-  - title: "wechat"
-    url: "#"
-  - title: "qq"
-    url: "http://user.qzone.qq.com/1324315849/"
-  - title: "rss"
-    url: "/feed.xml"
-
-############
-# 404 page #
-############
-
-404-img: "/img/labtocat.png"
-
-################################################################################
-
-# NB! Tread carefully if you want to change the variables below this point!
-
-# Sections shown in the index page
-
-pages_list:
-  个人简介: 'about'
-  我的博客: 'latest-post'
-  时间轴: 'timeline'
-  联系方式: 'contact'
-
-# Exclusion list from the generated _site
-
-exclude: ["LICENSE", "README.md", "CONTRIBUTING", "CONTRIBUTORS", "scripts"]
-
-# Pagination path
-
-paginate_path: "blog/page:num/"
-
-# Enable minification SASS
-
-sass:
-  style: compressed
-
-gems:
-  - jekyll-paginate
+name: 柴青山的博客
+email: chaiqingshan@hotmail.com
+author: chaiqingshan
+url: http://www.chaiqingshan.cn
+resume_site: http://www.chaiqingshan.cn/me/
+github: https://github.com/chaiqingshan/
+baseurl: ""  #根目录
+description: 假如生活欺骗了你，不要悲伤，不要哭泣。
+motto: 我想那缥缈的空中，定然有美丽的街市。
+#motto: 如果生活欺骗了你，不要悲伤，不要哭泣。
+banner: 我想带你去看绚丽的山峦，去看秀丽的溪谷，这份心情，人类是如何称呼的呢。
+#permalink: /:categories/:year/:month/:day/:title/
+permalink: /:year/:month/:day/:title/
+excerpt_separator:  '<!-- more -->' #文章摘要
+paginate: 8
+paginate_path: "page:num"
+gems: [jekyll-paginate]
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+github_username: chaiqingshan
+highlighter: rouge
+markdown: kramdown
+FB:
+  comments :
+    provider : disqus
+    disqus :
+        short_name : chaiqingshan
