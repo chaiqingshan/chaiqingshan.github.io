@@ -1,8 +1,4 @@
-/**
- * Created by maoxiaoke on 2017/3/20.
- */
-///wrap all the code in a IIFE to prevent the global scope pollution;
-;(function(){
+(function(){
 
     'use strict';
 
