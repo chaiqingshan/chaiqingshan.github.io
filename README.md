@@ -1,8 +1,3 @@
-## 预览
-
-### 首页
-
-![首页](https://github.com/chaiqingshan/chaiqingshan.github.io/blob/master/styles/images/blog/blog.png?raw=true)
 
 + 首页: 博客首页
 + 博文分类: 按照categories对文章进行分类
@@ -10,10 +5,6 @@
 + DEMO: 存放个人项目
 + 打赏我: 提供donation
 + 关于我: 个人CV
-
-### 文章页
-
-![文章页](https://github.com/chaiqingshan/chaiqingshan.github.io/blob/master/styles/images/blog/page.png?raw=true)
 
 ---
 
