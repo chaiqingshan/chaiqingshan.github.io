@@ -306,7 +306,7 @@ li{
   position: relative;
 }
 .r_text_1 ul{
-  list-style-image: url("../img/triangle.png");
+  list-style-image: url("img/triangle.png");
 }
 .r_text_1 ul li{
   font-size: 16px;
