@@ -6,10 +6,10 @@ url: http://www.chaiqingshan.cn
 resume_site: http://www.chaiqingshan.cn/me/
 github: https://github.com/chaiqingshan/
 baseurl: ""  #根目录
-description: 假如生活欺骗了你，不要悲伤，不要哭泣。
+description: 我想带你去看绚丽的山峦，去看秀丽的溪谷，这份心情，人类是如何称呼的呢。
 motto: 我想那缥缈的空中，定然有美丽的街市。
 #motto: 如果生活欺骗了你，不要悲伤，不要哭泣。
-banner: 我想带你去看绚丽的山峦，去看秀丽的溪谷，这份心情，人类是如何称呼的呢。
+banner: 不会搞艺术的程序员不是好设计师。
 #permalink: /:categories/:year/:month/:day/:title/
 permalink: /:year/:month/:day/:title/
 excerpt_separator:  '<!-- more -->' #文章摘要
