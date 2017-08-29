@@ -35,11 +35,7 @@ JavaScript 的一大特点是，函数存在「定义时上下文」和「运行
     }
     apple.say.call(banana);     //My color is yellow
     apple.say.apply(banana);    //My color is yellow
-    banana = {
-        color: "yellow"
-    }
-    apple.say.call(banana);     //My color is yellow
-    apple.say.apply(banana);    //My color is yellow
+
 
 所以，可以看出 call 和 apply 是为了动态改变 this 而出现的，当一个 object 没有某个方法（本栗子中banana没有say方法），但是其他的有（本栗子中apple有say方法），我们可以借助call或apply用其它对象的方法来操作。
 
@@ -48,7 +44,6 @@ JavaScript 的一大特点是，函数存在「定义时上下文」和「运行
 对于 apply、call 二者而言，作用完全一样，只是接受参数的方式不太一样。例如，有一个函数定义如下：
 
     var func = function(arg1, arg2) {
-
     };
     var func = function(arg1, arg2) {
      
@@ -73,19 +68,14 @@ JavaScript 中，某个函数的参数数量是不固定的，因此要说适用
     var array2 = ["Doe" , 555 , 100]; 
     Array.prototype.push.apply(array1, array2); 
     /* array1 值为  [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100] */
-    var array1 = [12 , "foo" , {name "Joe"} , -2458]; 
-    var array2 = ["Doe" , 555 , 100]; 
-    Array.prototype.push.apply(array1, array2); 
-    /* array1 值为  [12 , "foo" , {name "Joe"} , -2458 , "Doe" , 555 , 100] */
+
 
 2.获取数组中的最大值和最小值
 
     var  numbers = [5, 458 , 120 , -215 ]; 
     var maxInNumbers = Math.max.apply(Math, numbers),   //458
         maxInNumbers = Math.max.call(Math,5, 458 , 120 , -215); //458
-    var  numbers = [5, 458 , 120 , -215 ]; 
-    var maxInNumbers = Math.max.apply(Math, numbers),   //458
-        maxInNumbers = Math.max.call(Math,5, 458 , 120 , -215); //458
+
 
 number 本身没有 max 方法，但是 Math 有，我们就可以借助 call 或者 apply 使用其方法。
 
@@ -94,9 +84,7 @@ number 本身没有 max 方法，但是 Math 有，我们就可以借助 call �
     functionisArray(obj){ 
         return Object.prototype.toString.call(obj) === '[object Array]' ;
     }
-    functionisArray(obj){ 
-        return Object.prototype.toString.call(obj) === '[object Array]' ;
-    }
+
 
 4、类（伪）数组使用数组方法
 
@@ -117,11 +105,7 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
     }
     log(1);    //1
     log(1,2);    //1
-    function log(msg)　{
-      console.log(msg);
-    }
-    log(1);    //1
-    log(1,2);    //1
+
 
 上面方法可以解决最基本的需求，但是当传入参数的个数是不确定的时候，上面的方法就失效了，这个时候就可以考虑使用 apply 或者 call，注意这里传入多少个参数是不确定的，所以使用apply是最好的，方法如下：
 
@@ -130,11 +114,7 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
     };
     log(1);    //1
     log(1,2);    //1 2
-    function log(){
-      console.log.apply(console, arguments);
-    };
-    log(1);    //1
-    log(1,2);    //1 2
+
 
 接下来的要求是给每一个 log 消息添加一个”(app)”的前辍，比如：
 
@@ -147,11 +127,7 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
       args.unshift('(app)');
       console.log.apply(console, args);
     };
-    function log(){
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift('(app)'); 
-      console.log.apply(console, args);
-    };
+
 
 ## bind
 
@@ -171,28 +147,10 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
             });
         }
     }
-    var foo = {
-        bar : 1,
-        eventBind: function(){
-            var _this = this;
-            $('.someClass').on('click',function(event) {
-                /* Act on the event */
-                console.log(_this.bar);     //1
-            });
-        }
-    }
+
 
 由于 Javascript 特有的机制，上下文环境在 eventBind:function(){ } 过渡到 $(‘.someClass’).on(‘click’,function(event) { }) 发生了改变，上述使用变量保存 this 这些方式都是有用的，也没有什么问题。当然使用 bind() 可以更加优雅的解决这个问题：
 
-    var foo = {
-        bar : 1,
-        eventBind: function(){
-            $('.someClass').on('click',function(event) {
-                /* Act on the event */
-                console.log(this.bar);      //1
-            }.bind(this));
-        }
-    }
     var foo = {
         bar : 1,
         eventBind: function(){
@@ -208,12 +166,6 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
     var bar = function(){
         console.log(this.x);
     }
-    bar(); // undefined
-    var func = bar.bind(foo);
-    func(); // 3
-    var bar = function(){
-        console.log(this.x);
-    } 
     bar(); // undefined
     var func = bar.bind(foo);
     func(); // 3
@@ -249,17 +201,6 @@ Javascript中存在一种名为伪数组的对象结构。比较特别的是 arg
     var obj = {
         x: 81,
     };
-    var foo = {
-        getX: function() {
-            return this.x;
-        }
-    }
-    console.log(foo.getX.bind(obj)());  //81
-    console.log(foo.getX.call(obj));    //81
-    console.log(foo.getX.apply(obj));   //81
-    var obj = {
-        x: 81,
-    }; 
     var foo = {
         getX: function() {
             return this.x;
