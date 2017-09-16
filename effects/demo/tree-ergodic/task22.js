@@ -44,8 +44,8 @@ function inOrder(node){
 //后序遍历
 function postOrder(node){
   if(!(node == null)){
-    inOrder(node.firstElementChild);
-    inOrder(node.lastElementChild);
+    postOrder(node.firstElementChild);
+    postOrder(node.lastElementChild);
     divList.push(node);
   }
 }
