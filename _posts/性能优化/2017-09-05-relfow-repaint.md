@@ -48,7 +48,7 @@ tag: 性能优化
 
 2. 将元素的display设置为”none”，完成修改后再把display修改为原来的值
 
-3.　如果需要创建多个DOM节点，可以使用DocumentFragment创建完后一次性的加入document 
+3. 如果需要创建多个DOM节点，可以使用DocumentFragment创建完后一次性的加入document 
 
 ```javascript
 var fragment = document.createDocumentFragment();
@@ -59,24 +59,25 @@ document.body.appendChild(fragment);
 ```
 
 4. 集中修改样式 
-　　（1） 尽可能少的修改元素style上的属性 
 
-　　（2）尽量通过修改className来修改样式
+（1） 尽可能少的修改元素style上的属性 
 
-　　（3）通过cssText属性来设置样式值
-　　　　element.style.width=”80px”;  //reflow
-　　　　element.style.height=”90px”; //reflow
-　　　　element.style.border=”solid 1px red”; //reflow
-　　　　以上就产生多次reflow，调用的越多产生就越多
-　　　　element.style.cssText=”width:80px;height:80px;border:solid 1px red;”; //reflow　
+（2）尽量通过修改className来修改样式
 
-　　（4）缓存Layout属性值 
-　　　　var left=elem.offsetLeft; 多次使用left也就产生一次reflow
+（3）通过cssText属性来设置样式值
+　　element.style.width=”80px”;  //reflow
+　　element.style.height=”90px”; //reflow
+　　element.style.border=”solid 1px red”; //reflow
+　　以上就产生多次reflow，调用的越多产生就越多
+　　element.style.cssText=”width:80px;height:80px;border:solid 1px red;”; //reflow　
 
-　　（5）设置元素的position为absolute或fixed
+（4）缓存Layout属性值 
+　　var left=elem.offsetLeft; 多次使用left也就产生一次reflow
+
+（5）设置元素的position为absolute或fixed
 　　元素脱离标准流，也从DOM树结构中脱离出来，在需要reflow时只需要reflow自身与下级元素
 
-　　（6）尽量不要用table布局
+（6）尽量不要用table布局
 　　table元素一旦触发reflow就会导致table里所有的其它元素 reflow。在适合用table的场合，可以设置table-layout为auto或fixed，这样可以让table一行一行的渲染，这种做法也是为了限制reflow的影响范围
 
-　　（7）避免使用expression,他会每次调用都会重新计算一遍(包括加载页面)
+（7）避免使用expression,他会每次调用都会重新计算一遍(包括加载页面)
