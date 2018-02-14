@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智察 - 智能关系洞察系统</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" href="./dep/bootstrap-3.3.7/bootstrap.min.css">
+    <!-- Custom Styles-->
+    <link href="./css/reporter.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/map.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./dep/amazeui.min.css">
+    <link href="./css/pagination.css" rel="stylesheet" />
+    <link href="./css/iconfont.css" rel="stylesheet" />
+</head>
+<body onload="pageOnload()">
+<!-- 用于语音助手通信的标签 -->
+<input id="word" type="hidden" name="" value="${word}">
+<input id="layer" type="hidden" name="" value="${layer}">
+<div>
+    <!-- 导航栏 -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="map.html" class="navbar-brand">
+                <img src="./img/deeplogo.png">
+            </a>
+
+            <ul class="nav navbar-nav " id="nav-ul-left">
+                <li><a href="map.html"><i class="iconfont">&#xe60f;</i> 地 图</a></li>
+                <li><a href="caseInference.html"><i class="iconfont">&#xe60e;</i> 刑侦画布</a></li>
+                <li id="reporter-btn"><a href="reporter.html" style="color: #b7c0c9;"><i class="iconfont">&#xe60d;</i> 数据中心</a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-right">
+            <ul class="navbar-nav" id="nav-ul-right">
+                <li id="personal-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe610;</i></a></li>
+                <li id="message-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe60c;</i></a></li>
+            </ul>
+        </div>
+        <div class="personal hide">
+            <div class="personal-top">
+                <img src="./img/personal-center.png">
+                <span class="name">李明</span>
+                <span class="position">警员</span>
+                <span class="station">朝阳区麦子店派出所</span>
+            </div>
+            <div class="personal-bottom">
+                <i class="iconfont" style="font-size: 14px;color: #54b9ef">&#xe62e;</i>
+                <span>退出登录</span>
+            </div>
+        </div>
+        <div class="message hide">
+            <div class="message-top">
+                <span class="left">消息</span>
+                <span class="right">
+                    <i class="iconfont" style="color: #8fbfe7;font-size: 15px;">&#xe62d;</i>
+                    <label>清空</label>
+                </span>
+            </div>
+            <div class="message-content">
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div style="height: 57px;width: 302px;border-top: solid 1px #0c4d95;border-bottom: solid 1px #0c4d95;line-height: 25px;">
+                    <span>[警情] 李四斯报张三三在玉渊潭被不明男子殴打，已送往积水潭医院</span>
+                    <span style="float: right;margin-right: 23px;">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="wrapper">
+        <div class="row">
+            <div class="col-sm-3" id="left-nav" >
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class="badge">24</span>
+                        <a  href="reporter.html" style="color: #4a4a4a"> 未读报表</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="reporterHistory.html" style="color: #4a4a4a"> 历史报表</a>
+                    </li>
+                    <li class="list-group-item left_border-left" style="background: #fff">
+                        <a href="effectEstimate.html" style="margin-left: 0;"> 警情数据</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="video.html" style="color: #4a4a4a"> 视频数据</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-9" id="right-common">
+                <ul class="list-group">
+                    <li class="list-group-item" style="height: 80px;">
+                        <div style="width: 100%;">
+                            <div class="inputs">
+                                <span class="time-datepicker">
+                                    <input type="text" id="from" name="from" placeholder="起">
+                                    <img src="./img/dropdown.png" class="arrow-down">
+                                    <label style="color: rgba(134,165,200,1)">—</label>
+                                    <input type="text" id="to" name="to" placeholder="止">
+                                    <img src="./img/dropdown.png" style="margin-right:20px;" class="arrow-down">
+                                </span>
+                                <div class="btn-group" style="margin-right:20px;">
+                                    <button type="button" class="btn btn-default dropdown-toggle" 
+                                            data-toggle="dropdown">
+                                        <span id="input_type">类型</span> 
+                                        <img src="./img/dropdown.png" style="width: 10px;height: 10px;float: right;margin-top:5px;">
+                                    </button>
+                                    <table class="dropdown-menu" role="menu" id="dropdown_type">
+                                        <tr><td>全部</td></tr>
+                                        <tr><td value="0">刑事类</td></tr>
+                                        <tr><td value="1">治安类</td></tr>
+                                        <tr><td value="2">社情民意类</td></tr>
+                                        <tr><td value="3">纠纷求助类</td></tr>
+                                    </table>
+                                </div>
+                                <div class="btn-group" style="margin-right:20px;" id="police_station_drop">
+                                    <button type="button" class="btn btn-default dropdown-toggle" 
+                                            data-toggle="dropdown">
+                                        <span id="input_place">辖区</span>
+                                        <img src="./img/dropdown.png" style="width: 10px;height: 10px;float: right;margin-top:5px;">
+                                    </button>
+                                    <table class="dropdown-menu" role="menu" id="dropdown_place">
+                                    </table>
+                                </div>
+                                <input type="text" placeholder="输入关键词" style="width: 122px;" id="search-word">
+                                <button class= "select-date" id="search-button"> 搜索</button>
+                            </div>
+                            <span class="pull-right" id="excel-export">
+                                <font color="#0850a1">导出Excel</font> <i class="iconfont" style="color: #2f964b;">&#xe605;</i>
+                            </span>
+                        </div>
+                        <div class="iputs_down">
+                            <input type="checkbox" style="width: 12px;height: 12px;" class="all_input check">
+                            <label style="width: 20%">
+                                时间 <img src="./img/arrow_down.png" class="down"><img src="./img/arrow_up.png" class="up hide">
+                            </label> 
+                            <label style="width: 36%">摘要</label> 
+                            <label style="width: 25%">类别</label>
+                            <label style="width: 10%">辖区</label>
+                        </div>
+                    </li>
+                    <div id="div">
+                    
+                    </div>
+                </ul>
+            </div>
+            <div id="News-Pagination"></div>
+        </div>
+    </div>
+<!-- </div> -->
+<!-- /. WRAPPER  -->
+<!-- JS Scripts-->
+<!--配置文件-->
+<script src="./js/config.js"></script>
+<!-- jQuery Js -->
+<script src="./dep/jquery-3.2.1.min.js"></script>
+<script src="./js/jquery.pagination.js"></script>
+<!-- Bootstrap Js -->
+<script src="./dep/bootstrap-3.3.7/bootstrap.min.js"></script>
+<script src="./js/reporter.js"></script>
+<script src="./js/nav.event.js"></script>
+<script src="./dep/amazeui.min.js"></script>
+<script src="./js/eff.search.js"></script>
+<script src="./js/effectEstimate.data.js"></script>
+<script src="./js/checkbox.event.js"></script>
+<script src="./js/effectEstimate.js"></script>
+<script src="./js/load-policeStation.js"></script>
+<script src="./js/person-message-center.js"></script>
+<script src="./js/export-excel.js"></script>
+<script src="./js/load-reporter.js"></script>
+<script type="text/javascript">
+    for(var i=0;i<all_input.length;i++){
+        all_input[i].onclick = function(){
+            if(this.className === "all_input check"){
+                for(var j=0;j<all_input.length;j++){
+                    all_input[j].checked = this.checked;
+                }
+            }
+            if(this.checked == false){
+                for(var k=0;k<all_check.length;k++){
+                    all_check[k].checked = false;
+                }
+            }
+            bgcolor();
+        }
+    }
+</script>
+</body>
+
+</html>

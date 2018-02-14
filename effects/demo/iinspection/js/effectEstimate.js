@@ -1,0 +1,34 @@
+/*类型下拉选择*/
+$("#dropdown_type").on('click','td',function(e){
+	$("#input_type").html("");
+	$("#input_type").html($(this).html());
+});
+/*类型下拉悬浮背景*/
+$("#dropdown_type").on('mouseover','tr',function(e){
+	$(this).css("background","#f7fbff");
+});
+$("#dropdown_type").on('mouseout','tr',function(e){
+	$(this).css("background","");
+});
+/*辖区下拉选择*/
+$("#dropdown_place").on('click','td',function(e){
+	$("#input_place").html("");
+	$("#input_place").html($(this).html());
+});
+/*辖区下拉悬浮背景*/
+$("#dropdown_place").on('mouseover','tr',function(e){
+	$(this).css("background","#f7fbff");
+});
+$("#dropdown_place").on('mouseout','tr',function(e){
+	$(this).css("background","");
+});
+/*时间正序和倒序*/
+$(".iputs_down").on('click','img',function(e){
+	if($(this).hasClass("down")){
+		$(this).addClass("hide");
+		$(".up").removeClass("hide");
+	}else if($(this).hasClass("up")){
+		$(this).addClass("hide");
+		$(".down").removeClass("hide");
+	}	
+});

@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智察 - 智能关系洞察系统</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap Styles-->
+    <link rel="stylesheet" href="./dep/bootstrap-3.3.7/bootstrap.min.css"> 
+    <!-- Custom Styles-->
+    <link href="./css/reporter.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/map.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/video.css">
+    <link rel="stylesheet" href="./dep/amazeui.min.css">
+    <link href="./css/iconfont.css" rel="stylesheet" />
+    <!-- dependency -->
+    <script src="./dep/jquery-3.2.1.min.js"></script>
+    <script src="./dep/bootstrap-3.3.7/bootstrap.min.js"></script>
+    <script src="./dep/echarts-3.5.3/echarts.min.js"></script>
+	<script src="./dep/face-detect2/tracking.js"></script>
+    <script src="./dep/face-detect2/face-min.js"></script>
+    <script src="./dep/face-detect2/Landmarks.js"></script>
+    <script src="./dep/face-detect2/Regressor.js"></script>
+    <script src="./js/video.js"></script>
+    <script src="./js/video.data.js"></script>
+</head>
+
+<body>
+<!--导航栏-->
+<div class="container-fluid">
+    <div class="navbar-header">
+        <a href="map.html" class="navbar-brand">
+            <img src="./img/deeplogo.png">
+        </a>
+
+        <ul class="nav navbar-nav " id="nav-ul-left">
+            <li><a href="map.html"><i class="iconfont">&#xe60f;</i> 地 图</a></li>
+            <li><a href="caseInference.html"><i class="iconfont">&#xe60e;</i> 刑侦画布</a></li>
+            <li id="reporter-btn"><a href="reporter.html" style="color: #b7c0c9;"><i class="iconfont">&#xe60d;</i> 数据中心</a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-right">
+        <ul class="navbar-nav " id="nav-ul-right">
+            <li id="personal-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe610;</i></a></li>
+            <li id="message-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe60c;</i></a></li>
+        </ul>
+    </div>
+    <div class="personal hide">
+        <div class="personal-top">
+            <img src="./img/personal-center.png">
+            <span class="name">李明</span>
+            <span class="position">警员</span>
+            <span class="station">朝阳区麦子店派出所</span>
+        </div>
+        <div class="personal-bottom">
+            <i class="iconfont" style="font-size: 14px;color: #54b9ef">&#xe62e;</i>
+            <span>退出登录</span>
+        </div>
+    </div>
+    <div class="message hide">
+        <div class="message-top">
+            <span class="left">消息</span>
+            <span class="right">
+                <i class="iconfont" style="color: #8fbfe7;font-size: 15px;">&#xe62d;</i>
+                <label>清空</label>
+            </span>
+        </div>
+        <div class="message-content">
+            <div class="message-report">
+                <span>[周报] 2017年7月 第四周警情周报更新</span>
+                <span class="time">12:01</span>
+            </div>
+            <div style="height: 57px;width: 302px;border-top: solid 1px #0c4d95;border-bottom: solid 1px #0c4d95;line-height: 25px;">
+                <span>[警情] 李四斯报张三三在玉渊潭被不明男子殴打，已送往积水潭医院</span>
+                <span style="float: right;margin-right: 23px;">12:01</span>
+            </div>
+            <div class="message-report">
+                <span>[周报] 2017年7月 第四周警情周报更新</span>
+                <span class="time">12:01</span>
+            </div>
+            <div class="message-report">
+                <span>[周报] 2017年7月 第四周警情周报更新</span>
+                <span class="time">12:01</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" id="wrapper">
+    <div class="row">
+        <div class="col-sm-3" id="left-nav" >
+            <ul class="list-group" >
+                <li class="list-group-item">
+                    <span class="badge">24</span>
+                    <a  href="reporter.html" style="color: #4a4a4a"> 未读报表</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="reporterHistory.html" style="color: #4a4a4a"> 历史报表</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="effectEstimate.html" style="color: #4a4a4a"> 警情数据</a>
+                </li>
+                <li class="list-group-item left_border-left" style="background: #fff">
+                    <a href="video.html" style="margin-left: 0;"> 视频数据</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9" id="right-common">
+        	<div style="margin-left: 28px;">
+	        	<div class="search-box">
+	        		<form id="roleName" name="requestParams" action="http://124.127.117.2:5902/search-post" method="post" style="display: inline-block;" enctype="multipart/form-data" >	        			
+	        			<input id="role" placeholder="&emsp;搜索人名" name="rolename" style="border:none;" type="text">
+	        		</form>	        		
+	        		<img src="./img/search.png" style="position:absolute;left:195px;top:14.5px;width:19px;height:19px;cursor: pointer;" onclick="search_name()">
+	        		<form id="file" name="requestParams" style="display: inline-block;display:none" action="http://124.127.117.2:5902/search-post" method="post" enctype="multipart/form-data">
+	        			<input type="file" id="select-file" name="imgfile" accept="image/gif,image/jpeg,image/png"  />
+	        		</form>
+	    			<button type="button" id="upload-picture" class="btn" onclick="$('#select-file').click()">
+					<img src="./img/picture.png" style="position:relative;margin-top:-0.5px;margin-left:7.5px;margin-right:4px;width:13px;height: 13px;">选择图片</button>
+					<img id="preview" src="" style="width:100px;height: auto;display: none;">
+	        	</div>
+	        	<div class="camera">
+	        		<span>
+	        			<i class="iconfont">&#xe63a;</i>摄像头
+	        		</span>
+	        		<div class="btn-group" style="margin-right:20px;">
+                        <button type="button" class="btn btn-default dropdown-toggle" 
+                                data-toggle="dropdown" id="camera_select">
+                            	第一集<img src="./img/dropdown.png" style="width: 10px;height: 10px;float: right;margin-top:5px">
+                        </button>
+                        <table class="dropdown-menu" role="menu" id="dropdown">
+                            <tr><td>第1集</td></tr>
+                            <tr><td>第2集</td></tr>
+                            <tr><td>第3集</td></tr>
+                            <tr><td>第4集</td></tr>
+                            <tr><td>第5集</td></tr>
+                            <tr><td>第6集</td></tr>
+                            <tr><td>第7集</td></tr>
+                            <tr><td>第8集</td></tr>
+                            <tr><td>第9集</td></tr>
+                            <tr><td>第10集</td></tr>
+                            <!--<tr><td>第11集</td></tr>
+                            <tr><td>第12集</td></tr>
+                            <tr><td>第13集</td></tr>
+                            <tr><td>第14集</td></tr>
+                            <tr><td>第15集</td></tr>
+                            <tr><td>第16集</td></tr>
+                            <tr><td>第17集</td></tr>
+                            <tr><td>第18集</td></tr>
+                            <tr><td>第19集</td></tr>
+                            <tr><td>第20集</td></tr>
+                            <tr><td>第21集</td></tr>
+                            <tr><td>第22集</td></tr>
+                            <tr><td>第23集</td></tr>
+                            <tr><td>第24集</td></tr>
+                            <tr><td>第25集</td></tr>
+                            <tr><td>第26集</td></tr>
+                            <tr><td>第27集</td></tr>
+                            <tr><td>第28集</td></tr>
+                            <tr><td>第29集</td></tr>
+                            <tr><td>第30集</td></tr>
+                            <tr><td>第31集</td></tr>
+                            <tr><td>第32集</td></tr>
+                            <tr><td>第33集</td></tr>
+                            <tr><td>第34集</td></tr>
+                            <tr><td>第35集</td></tr>
+                            <tr><td>第36集</td></tr>
+                            <tr><td>第37集</td></tr>
+                            <tr><td>第38集</td></tr>
+                            <tr><td>第39集</td></tr>
+                            <tr><td>第40集</td></tr>
+                            <tr><td>第41集</td></tr>
+                            <tr><td>第42集</td></tr>
+                            <tr><td>第43集</td></tr>
+                            <tr><td>第44集</td></tr>
+                            <tr><td>第45集</td></tr>
+                            <tr><td>第46集</td></tr>
+                            <tr><td>第47集</td></tr>
+                            <tr><td>第48集</td></tr>
+                            <tr><td>第49集</td></tr>
+                            <tr><td>第50集</td></tr>
+                            <tr><td>第51集</td></tr>
+                            <tr><td>第52集</td></tr>-->
+                        </table>
+                    </div>			
+	        	</div>
+	        </div>
+			<hr style="height:1px;width:99%;border:solid 0.5px #eeeeee;margin-top: 3px;"/>
+			<div style="position:relative;margin-left: 28px;margin-top: 7.5px;width: 940px;height: 550px;">
+	        	<video id="video" height="550" width="940" controls preload onplay="face_detect()" onclick="playPause()" crossorigin="anonymous" style="position: absolute;left: 0;top: 0;">
+	        		<!--<source id="source" src="./img/RMDMY_01.mp4"></source>-->
+					<source id="source" src="http://124.127.117.32:8889/minyi/RMDMY_01.mp4"></source>
+				</video>
+				<canvas id="canvas"  height="530" width="940" onclick="playPause()" style="position: absolute;left: 0;top: 0;"></canvas>
+				<canvas id="output"  style="display: none;"></canvas>
+        	</div>
+        	<div style="margin-left: 28px;"><span><img src="./img/数据中心 个人信息.png" style="heigth:16px;width: 15px;margin-right: 9px;">人物信息</span></div>
+        	<hr style="height:1px;width:99%;border:solid 0.5px #eeeeee;margin-top: 5.5px;"/>
+        	<div style="margin-left: 28px;">
+        		<div style="float:left;" id="relation" class="col-sm-7">
+	        		<div style="height: 100px;">
+	        			<div class="col-sm-2" style="background-color: white;">
+	        				<img src="" style="width:78px;height: 96px;">
+	        			</div>
+	        			<div class="col-sm-9">
+	        				<h2 id="name" style="float:left;margin-bottom: 0px;">侯亮平</h1>
+	        				
+	        				<label style="float:left;"><span style="width:10px;height: 10px;margin:7.5px 3px 0px 21px;line-height:10px;background-color: #f93c32;float:left;"></span>红色预警</label>
+	        				<h3 style="margin-bottom: 0px;">汉东省人民检察院反贪局局长 高育良学生</h3>
+	        				<p style="margin-top: 5px;">介绍：经过与腐败违法分子的斗争，正义战胜邪恶，正义战胜邪恶也迎来了和成长。</p>
+	        			</div>
+	        		</div>
+	        		<div id="echarts" style="width:600px;height: 400px;"></div>
+        		</div>
+        		<div id="picture" class="col-sm-4" style="background-color:white ;height:500px;overflow-y:auto;">
+					<table>
+                        <tbody id="p_tbody"></tbody>
+                        
+                    </table>      			
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+	function face_detect() {
+      var video = document.getElementById('video');
+      var canvas = document.getElementById('canvas');
+      var context = canvas.getContext('2d');
+
+      var tracker = new tracking.LandmarksTracker();
+      tracker.setInitialScale(4);
+      tracker.setStepSize(2);
+      tracker.setEdgesDensity(0.1);
+
+      tracking.track('#video', tracker);
+
+      tracker.on('track', function(event) {
+
+        context.clearRect(0,0,canvas.width, canvas.height);
+
+        if(!event.data) return;
+
+          event.data.faces.forEach(function(rect) {
+            context.strokeStyle = '#f00';
+            context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+            context.font = '11px Helvetica';
+            context.fillStyle = "#fff";
+            context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
+            context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+          });       
+      });
+    };
+
+</script>
+<script src="./js/person-message-center.js"></script>
+</html>

@@ -1,0 +1,332 @@
+body,html{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: NotoSansHans;
+}
+#left-nav ul li a{
+    margin-left: 10px;
+    width: 101px;
+    height: 16px;
+    font-family: NotoSansHans;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 5px;
+    text-align: left;
+    color: #111e32;
+    text-decoration: none;
+}
+#left-nav ul li{
+    height: 60px !important;
+    background: inherit;
+    padding: 17px 15px ;
+}
+#left-nav ul li:hover{
+    color: #64C8FA;
+}
+#right-common ul li{
+    height: 50px;
+    font-size: 14px;
+    color: #4a4a4a;
+    font-family: NotoSansHans;
+    background: inherit;
+    padding-left: 60px;
+    border-bottom: 1px solid #eeeeee;
+    letter-spacing: 1px;
+    border-top: 0;
+    padding-right: 30px;
+    cursor: pointer;
+    line-height: 32px;
+}
+#right-common ul>:first-child:hover{
+    background: #fff;
+}
+#right-common ul li:hover{
+    background: rgba(247,247,247,1);
+    color: #111111;
+}
+#right-common ul li span:last-child{
+    margin-right: 26px;
+}
+.select-date{
+    width: 80px;
+    height: 30px;
+    background: rgba(10,91,180,1);
+    margin-left: 17px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+}
+.select-date:hover{
+    background: #4990E2;
+}
+#right-common ul li input{
+    /*width: 80px;*/
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    border: solid 0.5px #86a5c8;
+    padding-left: 5px;
+    outline:none;
+}
+#report-content{
+    display: none;
+    cursor: pointer;
+}
+#report-detail{
+    border-bottom: none;;
+    height: 100%;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-size: 14px;
+    color:#4a4a4a;
+}
+#report-title{
+    border-bottom: 1px solid red;
+    padding-right: 40px;
+    padding-left: 60px;
+}
+
+.inputs{
+    color: #999999;
+}
+.btn-group span{
+    color: #999999;
+}
+/*下拉框*/
+#dropdown_type,
+#dropdown_place{
+    height: 212px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+}
+#dropdown_place{
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+#dropdown_type tr{
+    height: 40px;
+    width: 122px;
+}
+#dropdown_type td{
+    padding-left: 6px;
+    width: 122px;
+}
+#dropdown_place tr{
+    height: 40px;
+    width: 122px;
+}
+#dropdown_place td{
+    padding-left: 6px;
+    width: 122px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+/*左侧导航栏的左边蓝色标记*/
+.left_border-left{
+    border-left: solid 8px #0850a1;
+}
+/*右边第一个list中的输入框*/
+.inputs{
+    width: 800px;
+    float: left;
+}
+.inputs img{
+    width: 10px;
+    height: 10px;
+    margin-left: -20px;
+}
+/*右边第一个list中的输入框下边的一行*/
+.iputs_down{
+    width: 1000px;
+    margin-top: 30px;
+    padding-top: 8px;
+}
+.iputs_down label{
+    color: #999999;
+    font-weight: normal;
+    font-family: NotoSansHans;
+    font-size: 12px;
+}
+.iputs_down img{
+    cursor: pointer;
+    width: 10px;
+    height: 13px;
+}
+.history_input{
+    width: 540px;
+    float: left;
+    margin-top: 12px;
+}
+.history_input img{
+    width: 10px;
+    height: 10px;
+    margin-left: -20px;
+}
+.time-datepicker label,
+.history_input label{
+    color: rgba(134,165,200,1);
+    margin-left: 5px;
+}
+#control{
+    width:200px;
+    height: 30px;
+    float: right;
+}
+.select-date-white{
+    width:80px;
+    height:30px;
+    border-radius:3px;
+    background: #fff;
+    border: solid 1px #0850a1;
+    color: #0850a1;
+    margin-right: 10px;
+}
+.top-grey{
+    width:100%;
+    height: 24px;
+    font-size: 12px; 
+    color: #999999;
+    background: #f2f4f6;
+    position:relative;
+}
+.top-grey input{
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    bottom: 6px;
+    left: 54px;
+}
+.top-grey label{
+    position: absolute;
+    top: 2px;
+    font-weight: normal;
+}
+.month_paper{
+    width:100%;
+    height: 45px;
+    font-size: 14px; 
+    color: #0850a1;
+    border-bottom: solid 1px #86a5c8;
+}
+.month_paper label{
+    padding-left:54px;
+    line-height: 60px;
+}
+#div input{
+    width: 12px;
+    height: 12px;
+}
+/* 导航栏个人中心和消息中心 */
+.personal{
+    width: 212px;
+    height: 120px;
+    background: #03458e;
+    position: absolute;
+    top:64px;
+    right:64px;
+    z-index: 999;
+    font-family: 'NotoSansHans';
+}
+.personal-top{
+    width: 100%;
+    height: 72px;
+    border-bottom: solid 1px #0853a7;
+}
+.personal-top img{
+    width: 40px;
+    height: 40px;
+    margin-top: 17px;
+    margin-left: 20px;
+}
+.personal-top .name{
+    color: #fff;
+    font-size: 16px;
+    margin-left: 18px;
+}
+.personal-top .position{
+    color: #54b9ef;
+    font-size: 10px;
+    background: #1965b8;
+    margin-left: 12px;
+    width: 28px;
+    height: 16px;
+    display: inline-block;
+    text-align: center;
+    line-height: 16px;
+}
+.personal-top .station{
+    width: 108px;
+    height: 12px;
+    color: #8fbfe7;
+    font-size: 10px;
+    position: absolute;
+    top:44px;
+    left: 82px;
+}
+.personal-bottom{
+    width: 100%;
+    height: 46px;
+    text-align: center;
+    line-height: 46px;
+    cursor: pointer;
+}
+.personal-bottom span{
+    color: #54b9ef;
+    font-size: 12px;
+    margin-left:6px;
+}
+.message{
+    width: 340px;
+    height: 214px;
+    background: #03458e;
+    position: absolute;
+    top:64px;
+    right: 0;
+    z-index: 999;
+    font-family: 'NotoSansHans';
+}
+.message-top{
+    width: 100%;
+    height: 50px;
+    border-bottom: solid 1px #0853a7;
+}
+.message-top .left{
+    color: #fff;
+    font-size: 16px;
+    line-height: 50px;
+    margin-left: 24px;
+}
+.message-top .right{
+    float: right;
+    line-height: 50px;
+    margin-right: 23px;
+}
+.message-top .right label{
+    color: #8fbfe7;
+    font-size: 12px; 
+}
+.message-content{
+    overflow-y:scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 158px;
+    padding-left: 24px;
+    font-size: 13px;
+    color: #eff5fb;
+}
+.message-report{
+    height: 47px;
+    width: 100%;
+    line-height: 40px;
+}
+.message-report .time{
+    float: right;
+    margin-right: 23px;
+}

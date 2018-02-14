@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智察 - 智能关系洞察系统</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./dep/bootstrap-3.3.7/bootstrap.min.css">
+    <!-- Custom Styles-->
+    <link rel="stylesheet" href="./css/reporter.css">
+    <link rel="stylesheet" href="./css/caseInference.css">
+    <link rel="stylesheet" href="./css/map.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./dep/amazeui.min.css">
+    <link href="./css/iconfont.css" rel="stylesheet" />
+    <!-- dependency -->
+    <script src="./dep/jquery-3.2.1.min.js"></script>
+    <script src="./dep/bootstrap-3.3.7/bootstrap.min.js"></script>
+    <script src="./dep/jquery.transit.js"></script>
+</head>
+<body>
+<!-- 用于语音助手通信的标签 -->
+<input id="word" type="hidden" name="" value="${word}">
+<input id="layer" type="hidden" name="" value="${layer}">
+<!-- 导航栏 -->
+<div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="map.html" class="navbar-brand">
+            <img src="./img/deeplogo.png">
+        </a>
+
+        <ul class="nav navbar-nav " id="nav-ul-left">
+            <li><a href="map.html"><i class="iconfont">&#xe60f;</i> 地 图</a></li>
+            <li><a href="caseInference.html" style="color: #b7c0c9;"><i class="iconfont">&#xe60e;</i> 刑侦画布</a></li>
+            <li id="reporter-btn"><a href="reporter.html"><i class="iconfont">&#xe60d;</i> 数据中心</a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-right">
+        <ul class="navbar-nav " id="nav-ul-right">
+            <li id="personal-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe610;</i></a></li>
+            <li id="message-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe60c;</i></a></li>
+        </ul>
+    </div>
+    <div class="personal hide">
+            <div class="personal-top">
+                <img src="./img/personal-center.png">
+                <span class="name">李明</span>
+                <span class="position">警员</span>
+                <span class="station">朝阳区麦子店派出所</span>
+            </div>
+            <div class="personal-bottom">
+                <i class="iconfont" style="font-size: 14px;color: #54b9ef">&#xe62e;</i>
+                <span>退出登录</span>
+            </div>
+        </div>
+        <div class="message hide">
+            <div class="message-top">
+                <span class="left">消息</span>
+                <span class="right">
+                    <i class="iconfont" style="color: #8fbfe7;font-size: 15px;">&#xe62d;</i>
+                    <label>清空</label>
+                </span>
+            </div>
+            <div class="message-content">
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div style="height: 57px;width: 302px;border-top: solid 1px #0c4d95;border-bottom: solid 1px #0c4d95;line-height: 25px;">
+                    <span>[警情] 李四斯报张三三在玉渊潭被不明男子殴打，已送往积水潭医院</span>
+                    <span style="float: right;margin-right: 23px;">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="container" id="wrapper" style="height: calc(100% - 64px);overflow: hidden;">
+    <div class="row">
+        <div class="col-sm-3" id="left-nav" style="width:30%;background-color: #f8f9fb;">
+            <div class="search-box"><input type="text" name="input_left" placeholder="查找人员、案件、信息" id="search-value" style="border: none;">
+            <img src="./img/search.png" style="position:absolute; right: 50px;top: 24.5px;width: 22px;height: 22px;cursor: pointer;" onclick="search()">
+            </div>
+            <div class="search-result">
+                 <!-- <div>
+                     <p>张丽丽在芍药居被抢了钱包</p>
+                     <p>警情编号 1562868920</p>
+                     <span onclick="moreDetails(this)"><label style="font-weight:500;cursor:pointer;">查看更多</label><img src="img/刑侦画布 查看更多.png" style="margin-left: 3px;"></span>
+                     <img src="img/addition_fill.png" class="addition">
+                     <div class="details">
+                         <label class="type">刑事</label><br>
+                         <label class="time">2014/10/24  下午14:12:07</label><br>
+                         <label class="content">在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的</label><br>
+                         <label class="front">警情序号&nbsp;</label><label class="letter">15679823018</label><br>
+                         <label class="front">出警派出所&nbsp;</label><label class="letter">朝阳区公安局</label><br>
+                         <label class="front">事主&nbsp;</label><label class="letter">张丽丽</label><br>
+                         <label class="front">反馈信息&nbsp;</label><br>
+                         <p class="response" title="在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的">在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的在枫林国际逛街时被抢,被抢了很多钱，真的很多钱，嗯嗯，真的</p>
+                     </div> 
+                 </div>
+                 <div>
+                     <p>张丽丽在芍药居被抢了钱包</p>
+                     <p>警情编号 1562868920</p>
+                     <span onclick="moreDetails(this)"><label style="font-weight:500;cursor:pointer;">查看更多</label><img src="img/箭头 下.png"></span>
+                     <img src="img/addition_fill.png" class="addition">
+                     <div class="details">
+                         
+                     </div> 
+                 </div>
+                 <div>
+                     <p>张丽丽在芍药居被抢了钱包</p>
+                     <p>警情编号 1562868920</p>
+                     <span onclick="moreDetails(this)"><label style="font-weight:500;cursor:pointer;">查看更多</label><img src="img/箭头 下.png"></span>
+                     <img src="img/addition_fill.png" class="addition">
+                     <div class="details">
+                         
+                     </div> 
+                 </div>
+                 <div>
+                     <p>张丽丽在芍药居被抢了钱包</p>
+                     <p>警情编号 1562868920</p>
+                     <span onclick="moreDetails(this)"><label style="font-weight:500;cursor:pointer;">查看更多</label><img src="img/箭头 下.png"></span>
+                     <img src="img/addition_fill.png" class="addition">
+                     <div class="details">
+                         
+                     </div> 
+                 </div>
+                 <div>
+                     <p>张丽丽在芍药居被抢了钱包</p>
+                     <p>警情编号 1562868920</p>
+                     <span onclick="moreDetails(this)"><label style="font-weight:500;cursor:pointer;">查看更多</label><img src="img/箭头 下.png"></span>
+                     <img src="img/addition_fill.png" class="addition">
+                     <div class="details">
+                         
+                     </div> 
+                 </div>  -->
+            </div>
+        </div>
+        <div class="col-sm-9" id="right-common" style="width: 70%;text-align: center;display: table-cell;vertical-align: middle; ">
+            <div class="content-header" style="width: 100%;height: 33px;position: relative;">
+                <div class="div1">
+                    <ul id="tab-ul" class="nav nav-tabs" role="tablist" style="padding: 0px;margin: 0px; height: 33px;width: 100%;border: 0px;">
+                        <!-- 此处放tab-li选项卡 -->
+                        <!-- <li role="presentation" class="active" style="width: 33%;height: 100%;padding: 0px;margin:0px;border-right:1px solid #fff;border-bottom: 0px;">
+                            <a href="#tab1" aria-controls = "tab1" role="tab" data-toggle="tab" style="padding: 0px 15px; height: 100%;width: 100%;border:0px;">
+                                <button type="button" class="close" aria-label="Close" style="width: 20px;height: 20px;margin-top: 3px;float: left;opacity: 1;">
+                                    <span aria-hidden="true" style="margin: 0px; width: 20px;height: 20px;" ><img src="img/关闭.png"></span>
+                                </button>
+                                <span style="height: 30px;width: 100%;margin: 0px;">
+                                    <input type="text" value="tab1" style="width: 80%;height: 25px;border: none;margin-top: 3px;background-color: inherit;" disabled="disabled">
+                                </span>
+                            </a>
+                        </li> -->
+                        <!-- <li role="presentation" style="width: 33%;height: 100%;padding: 0px;margin:0px;border-right:1px solid #fff;border-bottom: 0px;">
+                            <a href="#tab2" aria-controls = "tab2" role="tab" data-toggle="tab" style="padding: 0px 15px; height: 100%;width: 100%;border:0px;">
+                                <button type="button" class="close" aria-label="Close" style="width: 20px;height: 20px;margin-top: 3px;float: left;opacity: 1;">
+                                    <span aria-hidden="true" style="margin: 0px; width: 32px;height: 32px;" ><img src="img/关闭.png"></span>
+                                </button>
+                                <span style="height: 30px;width: 100%;margin: 0px;">
+                                    <input type="text" value="tab2" style="width: 80%;height: 25px;border: none;margin-top: 3px;background-color: inherit;" disabled="disabled">
+                                </span>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="div2" style="cursor: pointer;" onclick="addTab(-1)">
+                    <img src="./img/添加画布.png"> 
+                </div>
+            </div>
+            <!-- 显示刑侦布局 -->
+            <div class="tab-content content-body" id="content-body" style="height: calc(100% - 33px);width: 100%;">
+                <img src="./img/添加.png" class="middle-add" style="cursor: pointer;" onclick="addTab(-1)">
+                <!-- <div role="tabpanel" class="tab-pane active" id="tab1" style="width: 100%;height: 100%;border: 0px;">
+                    <iframe src="graph.html" style="width: 100%;height: 100%;border: 0px;"></iframe>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab2" style="width: 100%;height: 100%;border: 0px;">
+                    <iframe src="map.html" style="width: 100%;height: 100%;border: 0px;"></iframe>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!--配置文件-->
+<script src="./js/config.js"></script>
+<script src="./js/caseInference.js"></script>
+<script src="./js/person-message-center.js"></script>
+</body>
+</html>

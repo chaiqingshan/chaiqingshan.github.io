@@ -1,0 +1,24 @@
+#nav {
+	height: 6%;
+	border-radius: 0;
+}
+
+.custom-font {
+    font-family: "微软雅黑", "Microsoft YaHei UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+#nav a{
+        color: #ffffff;
+     }
+#word,
+#search-input {
+    width: 350px;
+    border-radius: 0;
+}
+#search,
+#search-btn {
+    width: 100px;
+    margin-top: 8px;
+    border-radius: 0;
+    background-color: #367fa9;
+}

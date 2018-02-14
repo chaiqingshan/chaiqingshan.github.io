@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<!--前端专用-->
+
+<head>
+    <meta charset="utf-8">
+    <title>智察 - 智能关系洞察系统</title>
+    <!-- 标题栏图标 -->
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./dep/bootstrap-3.3.7/bootstrap.min.css">
+    <!-- 百度地图离线样式 -->
+    <link rel="stylesheet" href="./dep/bmap/bmap.css">
+    <!-- 阿里巴巴iconfont矢量图标库 -->
+    <link rel="stylesheet" href="./dep/iconfont/iconfont.css">
+    <!-- Bootstrap日期时间选择器插件 -->
+    <link rel="stylesheet" href="./dep/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <!-- bootstrap-select -->
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap-select.min.css">
+    <!-- 自定义样式 -->
+    <!-- 导航栏通用样式 -->
+    <link rel="stylesheet" href="./css/common.css">
+    <!-- 地图页面自定义样式 -->
+    <link rel="stylesheet" href="./css/map.css">
+    <!-- 时间轴样式 -->
+    <!-- <link rel="stylesheet" href="dep/timeline/css/normalize.min.css" /> -->
+    <link rel="stylesheet" href="./dep/timeline/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="./dep/timeline/css/ion.rangeSlider.skinNice.css" />
+    <link rel="stylesheet" href="./dep/amazeui.min.css">
+    <link rel="stylesheet" href="./css/leaflet.css"/>
+    <link href="./css/iconfont.css" rel="stylesheet" />
+     <link href="./css/reporter.css" rel="stylesheet" />
+    <!-- 去除百度地图logo -->
+    <style type="text/css">
+        .anchorBL {
+            display: none;
+        }
+        body{
+            overflow: hidden;
+        }
+        .content-blurred {
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            -webkit-filter:blur(5px);
+            filter:url(#blur-effect);
+            opacity:.85;
+            z-index: -1;
+        }
+        #main::before{
+
+            background: url("./img/Blank.png") no-repeat 0 / cover fixed;
+        }
+
+        #nav::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            right:0;
+            bottom: 0;
+            left: 0;
+            /* background: rgba(255,0,0,.5); */
+            z-index: -1;
+            filter:blur(10px);
+        }
+         .leaflet-control-attribution leaflet-control{
+            display: none!important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 用于语音助手通信的标签 -->
+    <input id="word" type="hidden" name="" value="${word}">
+    <input id="layer" type="hidden" name="" value="${layer}">
+    <!-- 导航栏 -->
+
+    <div class="container-fluid" style="display:flex;flex-flow: row; ">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- <a href="">
+                <img src="./img/logo.png" class="navbar-brand">
+            </a>
+            <a href="map.html" class="navbar-brand page-scroll">
+                <span class="firstI">I</span><span class="secondI">I</span>SPECTION
+            </a> -->
+            <a href="map.html" class="navbar-brand">
+                <img src="./img/deeplogo.png">
+            </a>
+
+            <ul class="nav navbar-nav " id="nav-ul-left">
+                <li><a href="map.html" style="color: #b7c0c9;"><i class="iconfont">&#xe60f;</i> 地 图</a></li>
+                <li><a href="caseInference.html"><i class="iconfont">&#xe60e;</i> 刑侦画布</a></li>
+                <li id="reporter-btn"><a href="reporter.html"><i class="iconfont">&#xe60d;</i> 数据中心</a></li>
+            </ul>
+    </div>
+
+    <div class="navbar-right">
+        <ul class="navbar-nav " id="nav-ul-right">
+            <li id="personal-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe610;</i></a></li>
+            <li id="message-center" style="width: 64px;height: 64px;"><a><i class="iconfont">&#xe60c;</i></a></li>
+        </ul>
+    </div>
+    <div class="personal hide">
+            <div class="personal-top">
+                <img src="./img/personal-center.png">
+                <span class="name">李明</span>
+                <span class="position">警员</span>
+                <span class="station">朝阳区麦子店派出所</span>
+            </div>
+            <div class="personal-bottom">
+                <i class="iconfont" style="font-size: 14px;color: #54b9ef">&#xe62e;</i>
+                <span>退出登录</span>
+            </div>
+        </div>
+        <div class="message hide">
+            <div class="message-top">
+                <span class="left">消息</span>
+                <span class="right">
+                    <i class="iconfont" style="color: #8fbfe7;font-size: 15px;">&#xe62d;</i>
+                    <label>清空</label>
+                </span>
+            </div>
+            <div class="message-content">
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div style="height: 57px;width: 302px;border-top: solid 1px #0c4d95;border-bottom: solid 1px #0c4d95;line-height: 25px;">
+                    <span>[警情] 李四斯报张三三在玉渊潭被不明男子殴打，已送往积水潭医院</span>
+                    <span style="float: right;margin-right: 23px;">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+                <div class="message-report">
+                    <span>[周报] 2017年7月 第四周警情周报更新</span>
+                    <span class="time">12:01</span>
+                </div>
+            </div>
+        </div>
+</div>
+            <!-- </div> -->
+
+    <!--账号信息提示-->
+    <div id="userMsg" class="mouseover2">
+        <div id="circle">
+        </div>
+        <div id="user-message" style="position: absolute;top:0px;left:90px;padding-top: 10px;line-height: 40px">
+            <div >
+                朝阳区麦子店派出所
+            </div>
+            <span>
+                <a style="color: white;"><img src="./img/userLogo.png" style="width: 18px;height: 18px;">账号管理</a>
+                <a style="color:white;margin-left: 10px;"><img src="./img/exitLogo.png" style="width: 18px;height: 18px;">退出</a>
+            </span>
+        </div>
+    </div>
+    <div class="top-angle2"></div>
+    <!--消息提示-->
+    <!-- <div id="Msg-circle">
+        <span id="Msg-number"></span>
+    </div> -->
+    <!--点击之后的消息详情-->
+    <div id="Msg-content" class="mouseover3">
+        <ul style="list-style: none;color:white;text-overflow:ellipsis;width: 100%;padding:5px 10px">
+            <li  class="text-ellipsis" > <span class="dot dot1"></span><span>张女士在二里庄丢失1000元现金1234453242</span></li>
+            <li> <span class="dot dot5"></span><span>张女士在二里庄丢失1000元现金</span></li>
+            <li> <span class="dot dot2"></span><span>张女士在二里庄丢失1000元现金</span></li>
+            <li> <span class="dot dot3"></span><span>张女士在二里庄丢失1000元现金</span></li>
+            <li> <span class="dot dot4"></span><span>张女士在二里庄丢失1000元现金</span></li>
+            <li style="text-align: center;border: none;"><a style="color: white;">查看全部历史消息</a></li>
+        </ul>
+    </div>
+    <div class="top-angle3" class="mouseover3"></div>
+    <!-- 地图主模块 -->
+
+        <!-- 地图 -->
+        <div id="container"></div>
+        <!-- left panel -->
+        <div class="left_panel">
+            <div class="search">
+                <input type="text" name="" class="search_input" id="search_input" placeholder="搜索人名或案件"><span class="glyphicon glyphicon-triangle-bottom" onclick="toggleFilter(event)"></span>
+                <a class="search_btn"><i class=""><img src="./img/搜索.png" style="width: 21px;height: 22px;"></i></a>
+            </div>
+            <div class="filter">
+                <div class="tab">
+                    <ul class="nav nav-pills nav-justified" id="policeAndPeople">
+                        <li role="presentation" class="active" id="tab1"><a href="#" style="border-radius: 2px 0 0 2px;">警情</a></li>
+                        <li role="presentation" id="tab2"><a href="#" style="border-radius: 0 2px 2px 0;">常控人员</a></li>
+                    </ul>
+                </div>
+
+                <div id="police">
+                    <div class="tab_content tab_content1">
+                        <ul>
+                            <li><a>全部</a></li>
+                            <li><a><span class="dot dot_red"></span> 刑事案件</a></li>
+                            <li><a><span class="dot dot_orange"></span> 治安案件</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab_content tab_content2">
+                        <ul>
+                            <li><a><span class="dot dot_blue"></span> 纠纷求助</a></li>
+                            <li><a><span class="dot dot_green"></span> 社情民意</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab_content police_station">
+                        <select class="selectpicker" data-size="4" data-style="police_select" id="police_station">
+                            <option>十八里店</option>
+                            <option>来广营</option>
+                            <option>平房</option>
+                            <option>双井</option>
+                            <option>花家地</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <div class="hide" id="people">
+
+                    <div class="tab_content tab_content1">
+                        <ul>
+                            <li><a>全部</a></li>
+                            <li><a><span class="dot dot_red"></span> 红色预警</a></li>
+                            <li><a><span class="dot dot_orange"></span> 橙色预警</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab_content tab_content2" style="padding-bottom: 10px;">
+                        <ul>
+                            <li><a><span class="dot dot_green"></span> 绿色预警</a></li>
+                            <li><a><span class="dot dot_blue"></span> 蓝色预警</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="left_btn">
+                <a id="scatter_btn"><img class="img1" src="./img/刑侦画布警情.png"></a>
+                <a id="heat_btn" class="btn-load"><img class="img2" src="./img/热力图.png"></a>
+                <a id="camera_btn" class="btn-load"><img class="img3" src="./img/摄像头.png"></a>
+                <div class="edit">
+                    <a onclick="showEditItem()"><img class="img4" src="./img/编辑.png" id="edit_img"></a>
+                    <div class="edit_item" id="edit_item">
+                        <a id="rectbtn"><img src="./img/正方形选择.png" id="rect_img"></a>
+                        <a id="keepbtn"><img src="./img/正方形多选.png" id="keep_img"></a>
+                        <a id="polygonbtn"><img src="./img/多边形选择.png" id="polygon_img"></a>
+                        <a id="clearbtn"><img src="./img/取消选择.png" id="clear_img"></a>
+                    </div>
+                </div>
+                <div class="predict">
+                    <a onclick="addCasePred()"><img class="img5" src="./img/预测.png"　id="pred_img"></a>
+                    <div class="pred_item" id="pred_item"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bottom_panel">
+            <div class="bottom_btn">
+                <a onclick="showChart()"><img src="./img/时间选择器.png"></a>
+            </div>
+            <div class="bottom_chart">
+                <div class="btn_container">
+                   <button class="time_btn" id="24h_btn" onclick="getRecentData(1)">24h</button>
+                   <button class="time_btn" id="7d_btn" onclick="getRecentData(7)">7天</button>
+                   <button class="time_btn" id="30d_btn" onclick="getRecentData(30)">30天</button>
+                   <button class="time_btn" id="time_choose">自定义</button>
+                </div>
+                <div class="chart_content" id="timeChart"></div>
+            </div>
+        </div>
+        <!-- right panel -->
+        <div class="right_panel" id="inspect">
+            <!-- <div class="right_btn">
+                <i class="glyphicon glyphicon-menu-left" onclick="toggleRightPanel(event)"></i>
+            </div> -->
+            <div class="right_content">
+                <div class="right_title">24小时警情监控</div>
+                <div class="case_list">
+                    <ul>
+                        <!--<li class="case_item">
+                            <span class="dot dot_blue"></span>
+                            <p class="case_title" onclick="showDetails()">李鱼鱼在三里屯被抢钱包</p>
+                            <p class="case_time">1分钟前</p>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="right_panel" id="details">
+            <div class="right_content">
+                <div class="right_title">
+                    <a onclick="back()" class="back_btn"><img src="./img/back.png"></a>
+                    <span>警情详情</span>
+                    <!-- <a onclick="showAssoc()"><img src=""></a> -->
+                </div>
+                <div class="case_list_detail">
+                    <div class="details_container">
+                        <div class="title casetitle">李鱼鱼在三里屯被抢钱包</div>
+                        <div class="details_section first_section">
+                            <p class="caseCategory"></p>
+                            <p style="border-bottom: 1px solid #fff"></p>
+                            <p class="caseTime"></p>
+                            <p class="caseBrief"></p>
+                            <p>警情序号 <span></span></p>
+                            <p>出警派出所 <span></span></p>
+                        </div>
+                        <div class="title">关联分析</div>
+                        <button id="chart_toggle">打开刑侦画布</button>
+                        <div id="chart_container" style="width: 233px; height: 200px;"></div>
+                        <div class="details_section second_section">
+                            <p>事主 <span></span></p>
+                            <p>反馈信息</p>
+                            <p class="feedback_information"></p>
+                            <p>监控摄像头</p>
+                            <p>现场视频 编号：201221(11:00-12:00)</p>
+                            <p>周边视频 编号：201221(11:00-12:00)</p>
+                        </div>
+                        <div class="details_section">
+                            <div class="title">案件进展</div>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170426 麦子店派出所警方介入调解，达成私下和解</p>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170425 案件类型由民事纠纷改为侵犯人权</p>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170423 上报</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right_panel" id="charts">
+            <div class="right_content">
+                <div class="right_title">
+                    <a onclick="back()" class="back_btn"><img src="./img/back.png"></a>
+                    <span>案情统计图</span>
+                    <!-- <a onclick="showAssoc()"><img src=""></a> -->
+                </div>
+                <div class="case_list chart_list">
+                    <div class="details_container" id="side-chart-container">
+                        <div id="piechart_section"></div>
+                        <div id="stackbarchart_section"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="right_panel" id="details">
+            <div class="right_content">
+                <div class="right_title">
+                    <a onclick="back()" class="back_btn"><img src="./img/back.png"></a>
+                    <span>警情详情</span>
+                    &lt;!&ndash; <a onclick="showAssoc()"><img src=""></a> &ndash;&gt;
+                </div>
+                <div class="case_list">
+                    <div class="details_container">
+                        <span class="dot dot_blue"></span>
+                        <div class="title casetitle">李鱼鱼在三里屯被抢钱包</div>
+                        <div class="details_section">
+                            <div class="title">案件信息</div>
+                            <p>作案时间：2017-04-23 16:12:07</p>
+                            <p>事主身份：宋先生</p>
+                            <p>案件摘要：报在麦子店枣营南里会所打架</p>
+                            <p>作案手段：打架</p>
+                            <p>出警单位派出所：麦子店</p>
+                            <p>案件信息</p>
+                        </div>
+                        <div class="details_section">
+                            <div class="title">案件详情</div>
+                            <p>2017-04-23 16:12:07</p>
+                            <p>麦子店派出所 王亚 经民警现场调解，双方已和解，无人受伤，系纠纷类警情，出警民警张平顺，勤务指挥李飞审核上报。</p>
+                        </div>
+                        <div class="details_section">
+                            <div class="title">监控视频</div>
+                            <p>现场视频 编号：201221(11:00-12:00)</p>
+                            <p>周边视频 编号：201221(11:00-12:00)</p>
+                        </div>
+                        <div class="details_section">
+                            <div class="title">案件进展</div>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170426 麦子店派出所警方介入调解，达成私下和解</p>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170425 案件类型由民事纠纷改为侵犯人权</p>
+                            <p class="case_progress"><span class="dot dot_white"></span>20170423 上报</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+        
+        <!--时间选择器弹框-->
+        <div id="time-ctl" class="form-group ">
+            <div class="close_time"><i class="glyphicon glyphicon-remove"></i></div>
+            <div class="input-append date form_datetime" >
+                <input  type="text" value="" id="start-Time" readonly>
+                <span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
+            <div class="zhi">至</div>
+            <div class="input-append date form_datetime">
+                <input type="text" value="" id="end-Time" readonly>
+                 <span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
+            <button type="button" class="btn btn-default" id="time-choose-complete">完成</button>
+        </div>
+    </div>
+   
+    <!--前端专用-->
+    <!--首先引用配置文件-->
+    <script src="./js/config.js"></script>
+    <!-- jQuery -->
+    <script src="./dep/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="./dep/bootstrap-3.3.7/bootstrap.min.js"></script>
+    <!-- Bootstrap-datetimepicker -->
+    <script src="./dep/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="./dep/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <!-- 时间轴插件 -->
+    <script src="./dep/timeline/js/ion.rangeSlider.js"></script>
+    
+     <!-- leaflet API -->
+    <script src="./dep/leaflet/leaflet.js"></script>
+    
+    <!-- ECharts -->
+    <!-- <script src="./dep/echarts-3.5.3/echarts.min.js"></script> -->
+    <!-- 修改了源码的 echarts -->
+    <script src="./dep/echarts-3.5.3/echarts.js"></script>
+    <!-- echarts和leaflet结合的插件，引入顺序要在echart之后 -->
+    <script src="./dep/leaflet/echarts-leaflet.js"></script>
+    <script src="./dep/echarts-3.5.3/extension/bmap.min.js"></script>
+    <script src="./dep/echarts-3.5.3/extension/dataTool.min.js"></script>
+    <!-- Mapv 百度地图的API要放在Mapv之前引入-->
+    <script src="./dep/mapv-2.0.12.min.js"></script>
+	<script src="./dep/amazeui.min.js"></script>
+    <!-- 其他js,保持以下引入顺序 -->
+    <!-- 巡逻路线模拟数据 -->
+    <script src="./data/map.data.line.js"></script>
+    <!-- bootstap-select -->
+    <script src="./dep/bootstrap-3.3.7/bootstrap-select.min.js"></script>
+	<!-- 包装ajax调用 -->
+	<script src="./js/JWUtils.js"></script>
+	
+    <!-- 其他功能函数 -->
+	<script src="./js/map.data.js"></script>
+    <script src="./js/map.data.process.js"></script>
+    <script src="./js/echarts.option.js"></script>
+    <script src="./js/bmap.option.js"></script>
+    <script src="./js/map.event.js"></script>
+    <script src="./js/reporter.js"></script>
+    <script src="./js/change.js"></script>
+    <script src="./js/person-message-center.js"></script>
+    <script type="text/javascript">
+        var all_li_police = document.querySelectorAll("#police li");
+        all_li_police[0].onclick = function () {
+            this.className = "li_clicked";
+            for(var i = 1; i < all_li_police.length; i++){
+                all_li_police[i].className = "";
+            }
+        }
+        for(var i=1;i<all_li_police.length;i++){
+            all_li_police[i].onclick = function(){
+                $(this).toggleClass("li_clicked");
+                all_li_police[0].className = "";
+            }
+        }
+        var all_li_people = document.querySelectorAll("#people li");
+        for(var i=1;i<all_li_people.length;i++){
+            all_li_people[i].onclick = function(){
+                for(var j=0;j<all_li_people.length;j++){
+                    all_li_people[j].className = "";
+                }
+                this.className = "li_clicked";
+            }
+        }
+    </script>
+</body>
+
+</html>

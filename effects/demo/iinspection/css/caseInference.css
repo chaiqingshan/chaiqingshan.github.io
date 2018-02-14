@@ -1,0 +1,235 @@
+* {
+	font-family: NotoSansHans;
+	outline: 0px;
+}
+.col-sm-3 input{
+	width: calc(100% - 80px);
+	height: 45px;
+	margin:13px 38px 15px 38px;
+	border-radius: 2px;
+	padding-left: 30px;
+}
+.col-sm-3 .search-result{
+	width: 100%;
+	margin:0px;
+	padding-top: 15px; 
+	height: 650px;
+    overflow-y: scroll; 
+    /* border-top: 2px solid #e5e5e5; */
+    /* box-shadow: 0 0.5px 1.5px 0 #e5e5e5; */
+}
+.search-box {
+	position: relative;
+	z-index: 999;
+	box-shadow: -10px 0.5px 1.5px 0 #e5e5e5;
+}
+/* 详情展示板 */
+.details{
+	width: 100%;
+	height: auto;
+	max-height: 300px;
+	overflow-y: auto;
+	margin: 10px 0px 0px 0px;
+	padding: 0px 10px 10px 20px;
+	border: 0px;
+}
+/* .details label {
+	line-height: 14px;
+	margin: 0px;
+} */
+.details .type {
+	font-size: 14px;
+	position: relative;
+}
+/* .details .type::before */
+.red-point {
+    content: " ";
+    border: 3px solid red;/*设置红色*/
+    border-radius:3px;/*设置圆角*/
+    position: absolute;
+    left: -10px;
+    top: 9px;  
+}
+.details .time {
+	color: #666666;
+	font-size: 14px;
+	font-weight: 500;
+}
+.details .content {
+	color: #666666;
+	font-size: 14px;
+	font-weight: 500;
+}
+.details .front{
+	color: #0850a1;
+}
+.details .letter{
+	color: #666666;
+	font-size: 14px;
+	font-weight: 500;
+}
+.details .response{
+	color: #666666;
+	font-size: 14px;
+	font-weight: 500;
+	width: 100%;
+	height: 70px;
+	display: -webkit-box;/* 多行文本溢出 */
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden;
+	margin: 0px;
+}
+.col-sm-3 .search-result>div{
+	height: auto;/* 70px */
+	margin-bottom:15px;
+	margin-left: 38px;
+	margin-right: 38px;
+	border-radius: 1px;
+	background-color: #ffffff;
+	position: relative;
+}
+.col-sm-3 .search-result div p:first-child{
+	margin: 0px;
+	padding: 5px 0px 5px 20px;
+	border-radius: 1px;
+	width: 75%;
+	height: 36px;
+	text-overflow:ellipsis;/* 汉字超过字数用省略号代替 */
+	overflow:hidden; 
+	white-space:nowrap;
+}
+.col-sm-3 .search-result div p:nth-child(2){
+	margin: 0px;
+	padding: 5px 0px 5px 20px;
+	border-radius: 1px;
+	width: 75%;
+	height: 36px;
+	text-overflow:ellipsis;/* 汉字超过字数用省略号代替 */
+	overflow:hidden; 
+	white-space:nowrap;
+}
+.col-sm-3 .search-result div span {
+    position: absolute;
+    right: 10px; 
+    top: 6px;
+    font-size: 13px;
+    color: #0850a1;
+    cursor: pointer;
+}
+.col-sm-3 .search-result div span :hover {
+	opacity: .5;	
+}
+/* .col-sm-3 .search-result div span img{
+    margin-left: 3px;
+    padding-bottom: 3px;
+    width: 16px;
+    height: 16px;
+    font-size: 13px;
+} */
+.img{
+    margin-left: 3px;
+    padding-bottom: 3px;
+    width: 16px;
+    height: 16px;
+    font-size: 13px;
+}
+.img_active {
+	transform-origin: 50% 50%;
+	/* Rotate div */
+	transform:rotate(180deg);
+	-ms-transform:rotate(180deg); /* IE 9 */
+	-webkit-transform:rotate(180deg); /* Safari and Chrome */
+	transition: width 2s;
+	-webkit-transition: width 2s; /* Safari */
+}
+/* 右上角加号图标 */
+.col-sm-3 .search-result div .addition{
+	width: 26px;
+	height: 26px;
+    position: absolute;
+    right: -13px; 
+    top: -13px;
+    cursor: pointer;
+}
+.content-header .div1{
+	background: #f8f9fb;
+	width: 85%;
+	height: 33px; 
+	margin-left:22px;
+}
+.content-header .div2{
+	background: #f8f9fb;
+	width: 33px;
+	height: 33px;
+	border-radius: 4px;
+	position: absolute;
+	left: calc(85% + 24px);
+	top:0;
+}
+.div2 img{
+	width: 16px;
+	height: 16px;
+}
+.middle-add{
+	width: 92px;
+	height: 92px;
+	margin:0 auto;
+	display:block;
+	position:relative;
+	top:40%;
+	left:50%; 
+    margin-top:-46px;
+    margin-left:-46px;
+}
+.right-tool{
+	width: 50px;
+	height: 200px;
+	position: absolute;
+	right: 51px;
+	top:323px;
+	margin-top:-100px;
+}
+.div-blur{
+	margin-top: 8px;
+	width: 46px;
+	height: 46px;
+	text-align:center;
+	box-shadow: 0 2px 4px 0 rgba(133, 133, 133, 0.5);
+}
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+::-webkit-scrollbar  
+{  
+    width: 5px;
+    border-radius: 10px;
+}  
+/*定义滚动条轨道 内阴影+圆角*/  
+::-webkit-scrollbar-track  
+{   
+    border-radius: 10px;
+    background-color: #f8f9fb;  
+} 
+/*定义滑块 内阴影+圆角*/ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #d0d0d0;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
+.details::-webkit-scrollbar  
+{  
+	margin-right: 5px;
+    width: 5px;
+    border-radius: 10px;
+}  
+/*定义滚动条轨道 内阴影+圆角*/  
+.details::-webkit-scrollbar-track  
+{   
+    border-radius: 10px;
+    background-color: #ffffff;  
+} 
+/*定义滑块 内阴影+圆角*/ 
+.details::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #d0d0d0;
+}

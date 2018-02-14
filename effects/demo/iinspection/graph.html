@@ -1,0 +1,180 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>关联图</title>
+<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./dep/fonts/font-awesome.min.css" />
+<link rel="stylesheet" href="./dep/bootstrap-3.3.7/bootstrap.min.css"> 
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script src="./dep/ogma.min.js"></script>
+<script src="./dep/dagre.min.js"></script>
+<script src="./dep/jquery-3.2.1.min.js"></script>
+<script src="./dep/bootstrap-3.3.7/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+  <div id="graph-container" style="height: 100%;width: 100%;">
+             <!--  <div style="position: absolute; top: 35px; text-align: center; width: 100%;">
+               <input id="search-bar" type="text" title="Enter a name" placeholder="Enter a name" style="width: 300px; font-size: 16px; line-height: 16px; outline: none; border-radius: 15px; padding: 5px 20px; border: none;">
+               <button id="btn-search" title="Search" class="btn" style="border-radius: 15px; margin-left: -30px; padding: 4px 8px 6px;">
+                 <i class="fa fa-search" aria-hidden="true"></i>
+               </button>
+             </div> -->
+             <!-- 右侧工具栏 生成节点和连线-->
+              <div style="position: absolute; top: 30px;right: 5px;width: 60px;opacity: .9;max-height: calc(100vh - 80px);overflow: auto;padding-left: 12px;padding-bottom: 4px;">
+                <div class="tool round toolNode" data-type="circle" draggable="true" title="点击创建节点" alt="点击创建节点" id="circle-button">
+                </div>
+                <div class="tool round toolEdge" data-type="link" id="link-button" title="创建节点连接" alt="创建节点连接"></div>
+              </div>
+            <!-- 右侧工具栏 地图和画布转换-->
+            <div class="right-tool">
+                <div class="div-blur" title="地图" alt="地图" id="geo-tool">
+                    <div style="width: 46px;height: 46px; margin:0px; display: table-cell;vertical-align: middle;text-align: center;"><img src="./img/位置.png" style="width: 22px;height: 22px;"></div>
+                </div>
+                <div class="div-blur" title="关联图" alt="关联图" id="graph-tool">
+                    <div style="width: 46px;height: 46px; margin:0px; display: table-cell;vertical-align: middle;text-align: center;"><img src="./img/自由排列.png" style="width: 23px;height: 26px;"></div>
+                </div>
+                <div class="div-blur" title="树状图" alt="树状图" id="tree-tool">
+                    <div style="width: 46px;height: 46px; margin:0px; display: table-cell;vertical-align: middle;text-align: center;"><img src="./img/顺序排列.png" style="width: 22px;height: 22px;"></div>
+                </div>
+                <div class="div-blur" title="导出画布" alt="导出画布" id="export-tool">
+                    <div style="width: 46px;height: 46px; margin:0px; display: table-cell;vertical-align: middle;text-align: center;"><img src="./img/刑侦画布 下载.png" style="width: 20px;height: 20px;"></div>
+                </div>
+            </div>
+
+              <!-- 底部工具栏 -->
+              <div style="position: absolute; right: 20px; bottom: 20px;">
+                <button id="btn-center" title="Center the view on the graph" class="btn" style="margin-right: 30px;">
+                  <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                </button>
+                <button id="btn-zoom-out" title="Zoom out" class="btn">
+                  <i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+                <button id="btn-zoom-in" title="Zoom in" class="btn">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </div>
+               <form class="toolbar" id="ui">  </form>
+  </div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 id="myModalLabel">
+          Edit
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="row" style="height: auto;">
+            <div class="col-xs-12">
+              <h4>Categories</h4>
+            </div>
+          </div>
+          <div class="row" style="height: auto;">
+            <div class="col-xs-12">
+              <div class="input-group" style="margin-top: 10px">
+                <input type="text" class="form-control" placeholder="Type a new category" autofocus="autofocus" >
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button" disabled="disabled">
+                  <i class="glyphicon glyphicon-plus"></i>Add
+                </button>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 20px;">
+          <div class="row" style="height: auto;">
+            <div class="col-xs-3">
+              <h4>Property</h4>
+            </div>
+            <div class="col-xs-7">
+              <h4>Value</h4>
+            </div>
+            <div class="col-xs-2">
+            </div>
+          </div>
+          <!-- 显示属性的外围div -->
+          <div id="propertiesId">
+            
+          </div>
+        <div class="form-group">
+            <div class="row" style="height: auto;">
+              <div class="col-xs-3">
+                  <input type="text" name="name" id="first-input" placeholder="New property name" class="form-control" onkeydown="checkMsg()">
+              </div>
+              <div class="col-xs-7">
+                  <input type="text" name="name" id="second-input" onkeydown="checkMsg()" class="form-control" placeholder="New property value">
+              </div>
+              <div class="col-xs-2">
+                  <button class="btn btn-default btn-block" id="add" type="button" disabled="disabled" onclick="addProp()">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    Add
+                  </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-right">
+          <!-- 取消保存 -->
+          <a class="btn btn-link" data-dismiss="modal">cancel</a>
+          <button class="btn btn-success" type="submit" data-dismiss="modal" onclick="finish_save()">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Save
+          </button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+  </div>
+</div>
+<!-- save模态框 -->
+<div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close">
+          &times;
+        </button>
+        <h4 id="saveModalLabel">
+          Save visualization
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>Title</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="input-group" style="margin-top: 10px">
+                <input type="text" class="form-control" placeholder="Type a new category" autofocus="autofocus" id="saveTitle">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button" disabled="disabled">
+                  <i class="glyphicon glyphicon-plus"></i>Add
+                </button>
+              </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-right">
+          <a class="btn btn-link">cancel</a>
+          <button class="btn btn-success" type="submit" data-dismiss="modal" onclick="saveGraph()">
+            <i class="glyphicon glyphicon-pencil"></i>
+            Save
+          </button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+<!-- <script src="js/dummyDatabase.js"></script> -->
+<script src="./js/config.js"></script>
+<script src="js/main.js"></script>
