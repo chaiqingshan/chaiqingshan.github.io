@@ -58,5 +58,5 @@ $ jekyll build
 发布请保留主题来源。
 
 ```text
-Copyright © 2017 chaiqingshan All rights reserved.
+Copyright © 2018 chaiqingshan All rights reserved.
 ```
